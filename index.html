@@ -1,1306 +1,1311 @@
 
+```html
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>আমার আমল - Premium Islamic Tracker</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        matte: '#121212',
-                        darkbrown: '#1E1B18',
-                        cardbrown: '#27231E',
-                        borderbrown: '#3A332C',
-                        gold: {
-                            DEFAULT: '#D4AF37',
-                            light: '#F3E5AB',
-                            dark: '#AA8C2C'
-                        },
-                        cream: '#FDFBF7',
-                        emeraldcustom: '#059669'
-                    },
-                    fontFamily: {
-                        bengali: ['Hind Siliguri', 'Noto Sans Bengali', 'sans-serif']
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>আজকের আমল - Islamic Amal Tracker</title>
+
+  <!-- PWA Manifest & Theme Color -->
+  <meta name="theme-color" content="#0F0E0C">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIuOCpOCnjeOCpuCngrAg4KaG4Kau4KayIiwKICAic2hvcnRfbmFtZSI6ICJBTUFMVEJBQ0tFUiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMEYwRTBDIiwKICAidGhlbWVfY29sb3IiOiAiIzBGMEUwQyIKfQ==">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#0F0E0C',
+              card: '#1A1815',
+              border: '#2A2520',
+              input: '#221E1A',
+              gold: '#D4AF37',
+              goldHover: '#B59228',
+              goldLight: '#F3E5AB',
+              accentRed: '#EF4444',
+              accentGreen: '#10B981',
+              accentYellow: '#F59E0B',
+              textMain: '#EAE6DF',
+              textMuted: '#A0988E'
             }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Hind Siliguri', 'sans-serif']
+          }
         }
-    </script>
-    <!-- Google Fonts: Hind Siliguri -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PWA Manifest Link -->
-    <link rel="manifest" href="data:application/manifest+json,{
-        'name': 'আমার আমল - Islamic Tracker',
-        'short_name': 'আমার আমল',
-        'start_url': '.',
-        'display': 'standalone',
-        'background_color': '#121212',
-        'theme_color': '#D4AF37',
-        'icons': [
-            {'src': 'https://placehold.co/192x192/1E1B18/D4AF37?text=নূর', 'sizes': '192x192', 'type': 'image/png'},
-            {'src': 'https://placehold.co/512x512/1E1B18/D4AF37?text=নূর', 'sizes': '512x512', 'type': 'image/png'}
-        ]
-    }">
-    <style>
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: #121212;
-            color: #FDFBF7;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1E1B18;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D4AF37;
-            border-radius: 10px;
-        }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA8C2C 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gold-border {
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .gold-glow {
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-        }
-        .safe-bottom {
-            padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-        }
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-        .pulse-btn:active {
-            transform: scale(0.95);
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Aesthetics */
+    @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Hind Siliguri', 'Inter', sans-serif;
+      background-color: #0F0E0C;
+      color: #EAE6DF;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F0E0C;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2A2520;
+      border-radius: 4px;
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #9A7B1C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B59228 100%);
+    }
+
+    .gold-border-glow {
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+    }
+
+    /* Circular Progress Container */
+    .progress-ring__circle {
+      transition: stroke-dashoffset 0.35s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    .modal-enter {
+      animation: modalFadeIn 0.25s ease-out forwards;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-matte text-cream min-h-screen flex flex-col select-none">
 
-    <header class="sticky top-0 z-40 bg-darkbrown/95 backdrop-blur-md gold-border border-t-0 border-x-0 px-4 py-3 flex items-center justify-between shadow-lg">
-        <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-matte font-bold text-xl shadow-md">
-                <i class="fa-solid fa-kaaba"></i>
-            </div>
-            <div>
-                <h1 class="font-bold text-lg gold-gradient-text leading-tight">নূরুল আমল</h1>
-                <p id="header-date" class="text-xs text-stone-400">Loading date...</p>
-            </div>
+<body class="bg-brand-bg min-h-screen pb-24 flex flex-col justify-between max-w-md mx-auto relative border-x border-brand-border">
+
+  <!-- APP HEADER -->
+  <header id="mainHeader" class="sticky top-0 z-30 bg-brand-bg/95 backdrop-blur-md px-4 py-3 border-b border-brand-border flex items-center justify-between">
+    <div>
+      <h1 class="text-xl font-bold gold-gradient-text tracking-wide flex items-center gap-2">
+        <i class="fa-solid font-light fa-kaaba text-brand-gold text-lg"></i>
+        আজকের আমল
+      </h1>
+      <p id="hijriHeaderDate" class="text-xs text-brand-textMuted">১২ সফর, ১৪৪৭ হিজরী</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="openReadingModal()" class="px-2.5 py-1.5 rounded-lg bg-brand-card border border-brand-border text-brand-gold hover:bg-brand-input text-xs font-medium flex items-center gap-1.5 transition">
+        <i class="fa-solid fa-book-open"></i>
+        <span>পড়া লগ</span>
+      </button>
+      <button onclick="toggleQuickCalendar()" class="p-2 rounded-lg bg-brand-card border border-brand-border text-brand-textMain hover:text-brand-gold text-xs transition">
+        <i class="fa-solid fa-calendar-days text-sm"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- QUICK CALENDAR DRAWER (HIDDEN BY DEFAULT) -->
+  <div id="calendarDrawer" class="hidden bg-brand-card border-b border-brand-border p-4 transition-all">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-sm font-semibold text-brand-gold" id="currentCalendarMonth">আগস্ট ২০২৬</span>
+      <div class="flex gap-1">
+        <button onclick="changeMonth(-1)" class="px-2 py-1 bg-brand-input text-xs rounded border border-brand-border"><i class="fa-solid fa-chevron-left"></i></button>
+        <button onclick="changeMonth(1)" class="px-2 py-1 bg-brand-input text-xs rounded border border-brand-border"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="grid grid-cols-7 gap-1 text-center text-xs font-medium text-brand-textMuted mb-1">
+      <div>রবি</div><div>সোম</div><div>মঙ্গল</div><div>বুধ</div><div>বৃহঃ</div><div>শুক্র</div><div>শনি</div>
+    </div>
+    <div id="calendarGrid" class="grid grid-cols-7 gap-1 text-center text-xs">
+      <!-- Generated dynamically -->
+    </div>
+    <div class="mt-3 flex justify-around text-[10px] text-brand-textMuted pt-2 border-t border-brand-border">
+      <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brand-accentGreen"></span> সম্পূর্ণ</span>
+      <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brand-accentYellow"></span> মিক্সড</span>
+      <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brand-accentRed"></span> মিসড</span>
+      <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-brand-border"></span> বাকি</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT VIEWS CONTAINER -->
+  <main id="appContent" class="flex-1 p-4 space-y-4">
+
+    <!-- VIEW 1: আজ (TODAY DASHBOARD) -->
+    <section id="tab-today" class="view-tab space-y-4">
+      <!-- Quick Progress & Motivational Insight -->
+      <div class="bg-brand-card rounded-xl p-4 border border-brand-border flex items-center justify-between shadow-lg">
+        <div class="space-y-1">
+          <span class="text-xs text-brand-gold uppercase tracking-wider font-semibold">দৈনিক লক্ষ্যমাত্রা</span>
+          <h2 id="overallPercentText" class="text-2xl font-bold text-brand-textMain">০% সম্পন্ন</h2>
+          <p id="insightText" class="text-xs text-brand-textMuted">আজকে আপনার সর্বোচ্চ অগ্রাধিকার: জামাতে নামাজ ও সকালের যিকর।</p>
         </div>
-        <div class="flex items-center space-x-2">
-            <button onclick="openSettingsModal()" class="w-9 h-9 rounded-full bg-cardbrown gold-border flex items-center justify-center text-gold hover:bg-gold/20 transition">
-                <i class="fa-solid fa-gear"></i>
-            </button>
-            <button onclick="openStreakModal()" class="flex items-center space-x-1 px-3 py-1.5 rounded-full bg-cardbrown gold-border text-gold text-xs font-semibold">
-                <i class="fa-solid fa-fire text-amber-500"></i>
-                <span id="streak-badge-count">0</span> দিন
-            </button>
+        <!-- Progress Ring -->
+        <div class="relative w-16 h-16 flex items-center justify-center">
+          <svg class="w-full h-full transform -rotate-90">
+            <circle cx="32" cy="32" r="26" stroke="#2A2520" stroke-width="6" fill="transparent"/>
+            <circle id="progressCircle" cx="32" cy="32" r="26" stroke="#D4AF37" stroke-width="6" stroke-dasharray="163.3" stroke-dashoffset="163.3" stroke-linecap="round" fill="transparent" class="transition-all duration-500"/>
+          </svg>
+          <i class="fa-solid fa-fire text-brand-gold text-sm absolute"></i>
         </div>
-    </header>
+      </div>
 
-    <main id="main-container" class="flex-1 max-w-md w-full mx-auto px-4 pt-4 safe-bottom overflow-y-auto">
-        
-        <!-- ================= 1. HOME VIEW ================= -->
-        <section id="view-home" class="space-y-5 view-section">
-            <!-- Hijri & Gregorian Card -->
-            <div class="bg-gradient-to-br from-cardbrown to-darkbrown p-4 rounded-2xl gold-border gold-glow relative overflow-hidden">
-                <div class="absolute -right-6 -bottom-6 opacity-10 text-gold text-8xl pointer-events-none">
-                    <i class="fa-solid fa-moon"></i>
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="text-xs uppercase tracking-wider text-gold font-semibold bg-gold/10 px-2 py-0.5 rounded-full">আজকের বিবরণ</span>
-                        <h2 id="home-hijri-date" class="text-xl font-bold mt-2 text-cream">গণনা করা হচ্ছে...</h2>
-                        <p id="home-gregorian-date" class="text-sm text-stone-400 mt-0.5">...</p>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-xs text-stone-400 block">অবস্থান</span>
-                        <button onclick="openCitySelector()" class="text-sm font-medium text-gold underline flex items-center gap-1 mt-0.5">
-                            <i class="fa-solid fa-location-dot"></i> <span id="current-city-label">ঢাকা</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Prayer Times Mini Card -->
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="font-semibold text-sm flex items-center gap-2 text-gold">
-                        <i class="fa-solid fa-clock"></i> আজকের নামাজের সময়সূচি
-                    </h3>
-                    <span id="next-prayer-countdown" class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-medium">পরবর্তী: ফজর</span>
-                </div>
-                <div id="home-prayer-grid" class="grid grid-cols-5 gap-2 text-center">
-                    <!-- Dynamic Prayer Times -->
-                </div>
-            </div>
-
-            <!-- Daily Progress Ring / Summary -->
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border flex items-center justify-between">
-                <div>
-                    <h3 class="font-bold text-base text-gold">দৈনিক লক্ষ্য ও অগ্রগতি</h3>
-                    <p class="text-xs text-stone-400 mt-0.5">আজকের আমল ও ইবাদতের সমাপ্তি হার</p>
-                    <div class="mt-3 flex items-center gap-3">
-                        <span class="text-xs bg-darkbrown px-2.5 py-1 rounded-lg border border-borderbrown">আমল: <strong id="home-amal-stat" class="text-gold">০/০</strong></span>
-                        <span class="text-xs bg-darkbrown px-2.5 py-1 rounded-lg border border-borderbrown">নামাজ: <strong id="home-salah-stat" class="text-gold">০/৫</strong></span>
-                    </div>
-                </div>
-                <div class="relative w-20 h-20 flex items-center justify-center">
-                    <svg class="w-full h-full transform -rotate-90">
-                        <circle cx="40" cy="40" r="34" stroke="#3A332C" stroke-width="6" fill="transparent" />
-                        <circle id="home-progress-ring" cx="40" cy="40" r="34" stroke="#D4AF37" stroke-width="6" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" fill="transparent" class="transition-all duration-500" />
-                    </svg>
-                    <div class="absolute text-center">
-                        <span id="home-progress-text" class="text-sm font-bold text-gold">০%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Access Grid -->
-            <div>
-                <h3 class="text-sm font-semibold text-stone-300 mb-3 px-1">দ্রুত প্রবেশ</h3>
-                <div class="grid grid-cols-4 gap-3">
-                    <button onclick="switchTab('quran')" class="bg-cardbrown hover:bg-darkbrown p-3 rounded-2xl gold-border flex flex-col items-center text-center transition pulse-btn">
-                        <i class="fa-solid fa-book-quran text-gold text-xl mb-1.5"></i>
-                        <span class="text-xs font-medium">কুরআন</span>
-                    </button>
-                    <button onclick="switchTab('duas')" class="bg-cardbrown hover:bg-darkbrown p-3 rounded-2xl gold-border flex flex-col items-center text-center transition pulse-btn">
-                        <i class="fa-solid fa-hands-praying text-gold text-xl mb-1.5"></i>
-                        <span class="text-xs font-medium">দোয়া</span>
-                    </button>
-                    <button onclick="switchTab('zikir')" class="bg-cardbrown hover:bg-darkbrown p-3 rounded-2xl gold-border flex flex-col items-center text-center transition pulse-btn">
-                        <i class="fa-solid fa-circle-dot text-gold text-xl mb-1.5"></i>
-                        <span class="text-xs font-medium">জিকির</span>
-                    </button>
-                    <button onclick="switchTab('routine')" class="bg-cardbrown hover:bg-darkbrown p-3 rounded-2xl gold-border flex flex-col items-center text-center transition pulse-btn">
-                        <i class="fa-solid fa-calendar-days text-gold text-xl mb-1.5"></i>
-                        <span class="text-xs font-medium">রুটিন</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Quick Stats Preview -->
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <div class="flex justify-between items-center mb-2">
-                    <h3 class="font-semibold text-sm text-gold">সাপ্তাহিক পরিসংখ্যান</h3>
-                    <button onclick="switchTab('stats')" class="text-xs text-stone-400 hover:text-gold underline">সব দেখুন</button>
-                </div>
-                <div id="home-weekly-chart" class="flex items-end justify-between h-24 pt-4 px-2">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= 2. SALAH / PRAYER VIEW ================= -->
-        <section id="view-salah" class="space-y-4 view-section hidden">
-            <div class="flex justify-between items-center bg-cardbrown p-4 rounded-2xl gold-border">
-                <div>
-                    <h2 class="font-bold text-lg text-gold">নামাজ ও কাজা ট্র্যাকার</h2>
-                    <p class="text-xs text-stone-400">আজকের ৫ ওয়াক্ত ফরজ ও সুন্নাহ ব্যবস্থাপনা</p>
-                </div>
-                <button onclick="openQazaManager()" class="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-semibold">
-                    <i class="fa-solid fa-list-check"></i> কাজা খাতা
-                </button>
-            </div>
-
-            <!-- Prayer List Container -->
-            <div id="salah-list-container" class="space-y-3">
-                <!-- Rendered dynamically -->
-            </div>
-        </section>
-
-        <!-- ================= 3. AMAL VIEW ================= -->
-        <section id="view-amal" class="space-y-4 view-section hidden">
-            <div class="flex justify-between items-center bg-cardbrown p-4 rounded-2xl gold-border">
-                <div>
-                    <h2 class="font-bold text-lg text-gold">দৈনিক আমল ট্র্যাকার</h2>
-                    <p class="text-xs text-stone-400">নিয়মিত ইবাদত ও সুন্নাহ আমলসমূহ</p>
-                </div>
-                <button onclick="openAddAmalModal()" class="w-10 h-10 rounded-xl bg-gold text-matte font-bold flex items-center justify-center shadow-md hover:bg-gold-light transition pulse-btn">
-                    <i class="fa-solid fa-plus text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Amal Category Filters -->
-            <div class="flex gap-2 overflow-x-auto pb-1 text-xs">
-                <button onclick="filterAmals('all')" class="px-3 py-1.5 rounded-xl bg-gold text-matte font-semibold whitespace-nowrap amal-filter-btn">সকল আমল</button>
-                <button onclick="filterAmals('daily')" class="px-3 py-1.5 rounded-xl bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap amal-filter-btn">দৈনিক</button>
-                <button onclick="filterAmals('quran')" class="px-3 py-1.5 rounded-xl bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap amal-filter-btn">কুরআন ও জিকির</button>
-                <button onclick="filterAmals('sunnah')" class="px-3 py-1.5 rounded-xl bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap amal-filter-btn">সুন্নাহ</button>
-            </div>
-
-            <!-- Amals Container -->
-            <div id="amal-list-container" class="space-y-3">
-                <!-- Rendered dynamically -->
-            </div>
-        </section>
-
-        <!-- ================= 4. ZIKIR VIEW ================= -->
-        <section id="view-zikir" class="space-y-4 view-section hidden">
-            <div class="flex justify-between items-center bg-cardbrown p-4 rounded-2xl gold-border">
-                <div>
-                    <h2 class="font-bold text-lg text-gold">ডিজিটাল জিকির কাউন্টার</h2>
-                    <p class="text-xs text-stone-400">তাসবিহ ও ইস্তিগফার পাঠ করুন</p>
-                </div>
-                <button onclick="openAddZikirModal()" class="px-3 py-1.5 rounded-xl bg-gold text-matte text-xs font-semibold shadow-md">
-                    <i class="fa-solid fa-plus"></i> নতুন জিকির
-                </button>
-            </div>
-
-            <!-- Active Zikir Card with Big Counter Button -->
-            <div class="bg-gradient-to-b from-cardbrown to-darkbrown p-6 rounded-3xl gold-border text-center relative shadow-xl">
-                <div class="flex justify-between items-center mb-4">
-                    <select id="active-zikir-select" onchange="changeActiveZikir(this.value)" class="bg-darkbrown text-gold text-sm font-medium px-3 py-1.5 rounded-xl border border-borderbrown outline-none w-full max-w-[240px]">
-                        <!-- Populated by JS -->
-                    </select>
-                    <button onclick="resetActiveZikir()" class="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center hover:bg-rose-500/30 transition">
-                        <i class="fa-solid fa-rotate-right"></i>
-                    </button>
-                </div>
-
-                <div class="my-4">
-                    <p id="zikir-arabic-text" class="text-2xl font-bold text-gold mb-2 font-serif">سُبْحَانَ اللَّهِ</p>
-                    <p id="zikir-meaning-text" class="text-xs text-stone-400 px-4">আল্লাহ পবিত্র ও মহিমাময়</p>
-                </div>
-
-                <!-- Big Tap Counter Button -->
-                <div class="my-6 flex justify-center">
-                    <button onclick="incrementZikir()" class="w-44 h-44 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-1.5 shadow-2xl pulse-btn active:scale-95 transition-all">
-                        <div class="w-full h-full rounded-full bg-matte flex flex-col items-center justify-center border-4 border-gold/40">
-                            <span id="zikir-current-count" class="text-4xl font-black text-gold">০</span>
-                            <span class="text-xs text-stone-400 mt-1">লক্ষ্য: <span id="zikir-target-count">৩৩</span></span>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Progress Ring / Bar for Zikir -->
-                <div class="w-full bg-darkbrown h-2 rounded-full overflow-hidden border border-borderbrown">
-                    <div id="zikir-progress-bar" class="bg-gradient-to-r from-gold-dark to-gold h-full w-0 transition-all duration-300"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= 5. QURAN & STUDY VIEW ================= -->
-        <section id="view-quran" class="space-y-4 view-section hidden">
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <div class="flex justify-between items-center mb-3">
-                    <div>
-                        <h2 class="font-bold text-lg text-gold">কুরআন ও পড়াশোনা ট্র্যাকার</h2>
-                        <p class="text-xs text-stone-400">তিলাওয়াত ও হাদিস অধ্যয়নের অগ্রগতি</p>
-                    </div>
-                </div>
-                <!-- Bookmark Card -->
-                <div class="bg-darkbrown p-3.5 rounded-xl border border-borderbrown mb-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-[10px] uppercase bg-gold/20 text-gold px-2 py-0.5 rounded font-semibold">সর্বশেষ বুকমার্ক</span>
-                            <h4 id="quran-last-read" class="font-bold text-sm mt-1 text-cream">সূরা আল-বাকারা, আয়াত ২৫৫</h4>
-                        </div>
-                        <button onclick="updateQuranBookmarkPrompt()" class="px-3 py-1.5 rounded-lg bg-gold text-matte text-xs font-bold">আপডেট</button>
-                    </div>
-                </div>
-                <!-- Daily Goal Progress -->
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-darkbrown p-3 rounded-xl border border-borderbrown text-center">
-                        <span class="text-xs text-stone-400 block">আজকের তিলাওয়াত</span>
-                        <span id="quran-today-pages" class="text-lg font-bold text-gold">০ পৃষ্ঠা</span>
-                        <button onclick="addQuranPages(1)" class="mt-2 w-full py-1 rounded bg-gold/20 text-gold text-xs font-semibold hover:bg-gold/30">+ ১ পৃষ্ঠা যোগ</button>
-                    </div>
-                    <div class="bg-darkbrown p-3 rounded-xl border border-borderbrown text-center">
-                        <span class="text-xs text-stone-400 block">মাসিক লক্ষ্য</span>
-                        <span class="text-lg font-bold text-gold">১ খতম</span>
-                        <div class="mt-2 text-[11px] text-stone-400">৩০ পারা পরিকল্পনা</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Surah Progress List -->
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="font-semibold text-sm text-gold">বিশেষ সূরা ও আমল</h3>
-                    <span class="text-xs text-stone-400">মুখস্থ ও তিলাওয়াত</span>
-                </div>
-                <div id="quran-surah-list" class="space-y-2">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= 6. DUAS VIEW ================= -->
-        <section id="view-duas" class="space-y-4 view-section hidden">
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border flex justify-between items-center">
-                <div>
-                    <h2 class="font-bold text-lg text-gold">নির্বাচিত দোয়া ও জিকির</h2>
-                    <p class="text-xs text-stone-400">দৈনন্দিন জীবনের প্রয়োজনীয় দোয়া</p>
-                </div>
-                <button onclick="filterDuas('favorites')" class="w-9 h-9 rounded-xl bg-gold/20 text-gold border border-gold/30 flex items-center justify-center">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-            </div>
-
-            <!-- Dua Categories -->
-            <div class="flex gap-2 overflow-x-auto pb-1 text-xs">
-                <button onclick="filterDuas('all')" class="px-3 py-1 rounded-lg bg-gold text-matte font-semibold whitespace-nowrap dua-cat-btn">সব</button>
-                <button onclick="filterDuas('morning')" class="px-3 py-1 rounded-lg bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap dua-cat-btn">সকাল-সন্ধ্যা</button>
-                <button onclick="filterDuas('salah')" class="px-3 py-1 rounded-lg bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap dua-cat-btn">নামাজ সম্পর্কিত</button>
-                <button onclick="filterDuas('daily')" class="px-3 py-1 rounded-lg bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap dua-cat-btn">দৈনন্দিন</button>
-            </div>
-
-            <!-- Duas Container -->
-            <div id="duas-list-container" class="space-y-3">
-                <!-- Rendered via JS -->
-            </div>
-        </section>
-
-        <!-- ================= 7. STATS & PROGRESS VIEW ================= -->
-        <section id="view-stats" class="space-y-4 view-section hidden">
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <h2 class="font-bold text-lg text-gold">পরিসংখ্যান ও অগ্রগতি</h2>
-                <p class="text-xs text-stone-400">আপনার ঐতিহাসিক ইবাদতের সঠিক রেকর্ড</p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-cardbrown p-4 rounded-2xl gold-border text-center">
-                    <span class="text-xs text-stone-400 block">বর্তমান স্ট্রিক (Streak)</span>
-                    <span id="stats-current-streak" class="text-2xl font-bold text-gold mt-1 block">০ দিন</span>
-                </div>
-                <div class="bg-cardbrown p-4 rounded-2xl gold-border text-center">
-                    <span class="text-xs text-stone-400 block">সর্বোচ্চ ধারাবাহিকতা</span>
-                    <span id="stats-max-streak" class="text-2xl font-bold text-emerald-400 mt-1 block">০ দিন</span>
-                </div>
-            </div>
-
-            <!-- Detailed Chart Card -->
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <h3 class="font-semibold text-sm text-gold mb-3">গত ৭ দিনের নামাজের রেকর্ড</h3>
-                <div id="stats-salah-chart" class="space-y-2">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= 8. ROUTINE VIEW ================= -->
-        <section id="view-routine" class="space-y-4 view-section hidden">
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border flex justify-between items-center">
-                <div>
-                    <h2 class="font-bold text-lg text-gold">ব্যক্তিগত রুটিন ও পরিকল্পনা</h2>
-                    <p class="text-xs text-stone-400">ফজরের পর থেকে ঘুমানোর আগের সময়সূচি</p>
-                </div>
-                <button onclick="openAddRoutineModal()" class="w-9 h-9 rounded-xl bg-gold text-matte font-bold flex items-center justify-center">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </div>
-
-            <div id="routine-list-container" class="space-y-3">
-                <!-- Rendered via JS -->
-            </div>
-        </section>
-
-        <!-- ================= 9. SETTINGS VIEW ================= -->
-        <section id="view-settings" class="space-y-4 view-section hidden">
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border">
-                <h2 class="font-bold text-lg text-gold">সেটিংস ও ডেটা ব্যাকআপ</h2>
-                <p class="text-xs text-stone-400">অ্যাপ কাস্টমাইজেশন ও ব্যাকআপ ব্যবস্থাপনা</p>
-            </div>
-
-            <div class="bg-cardbrown p-4 rounded-2xl gold-border space-y-4">
-                <div>
-                    <label class="text-xs text-stone-400 block mb-1">আপনার শহর নির্বাচন করুন</label>
-                    <select id="settings-city-select" onchange="changeCity(this.value)" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                        <option value="Dhaka">ঢাকা (Dhaka)</option>
-                        <option value="Chittagong">চট্টগ্রাম (Chittagong)</option>
-                        <option value="Sylhet">সিলেট (Sylhet)</option>
-                        <option value="Rajshahi">রাজশাহী (Rajshahi)</option>
-                        <option value="Khulna">খুলনা (Khulna)</option>
-                        <option value="Barisal">বরিশাল (Barisal)</option>
-                        <option value="Rangpur">রংপুর (Rangpur)</option>
-                        <option value="Mymensingh">ময়মনসিংহ (Mymensingh)</option>
-                    </select>
-                </div>
-
-                <div class="pt-2 border-t border-borderbrown flex justify-between items-center">
-                    <div>
-                        <h4 class="font-medium text-sm">JSON ব্যাকআপ ফাইল</h4>
-                        <p class="text-xs text-stone-400">আপনার সমস্ত ডেটা সেভ করে রাখুন</p>
-                    </div>
-                    <button onclick="exportJSONData()" class="px-3 py-1.5 rounded-xl bg-gold/20 text-gold border border-gold/30 text-xs font-semibold">Export</button>
-                </div>
-
-                <div class="pt-2 border-t border-borderbrown flex justify-between items-center">
-                    <div>
-                        <h4 class="font-medium text-sm">ব্যাকআপ রিস্টোর</h4>
-                        <p class="text-xs text-stone-400">আগের ব্যাকআপ ফাইল আপলোড করুন</p>
-                    </div>
-                    <label class="px-3 py-1.5 rounded-xl bg-cardbrown text-stone-300 border border-borderbrown text-xs font-semibold cursor-pointer">
-                        Import <input type="file" accept=".json" onchange="importJSONData(event)" class="hidden">
-                    </label>
-                </div>
-
-                <div class="pt-2 border-t border-borderbrown flex justify-between items-center">
-                    <div>
-                        <h4 class="font-medium text-sm text-rose-400">সমস্ত ডেটা রিসেট</h4>
-                        <p class="text-xs text-stone-400">ফ্যাক্টরি মোডে ফিরিয়ে নিন</p>
-                    </div>
-                    <button onclick="confirmResetData()" class="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-semibold">রিসেট</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-darkbrown/95 backdrop-blur-md gold-border border-b-0 border-x-0 py-2 px-2 flex justify-around items-center z-40 shadow-2xl">
-        <button onclick="switchTab('home')" id="nav-btn-home" class="flex flex-col items-center text-gold nav-btn transition">
-            <i class="fa-solid fa-house text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">আজ</span>
-        </button>
-        <button onclick="switchTab('salah')" id="nav-btn-salah" class="flex flex-col items-center text-stone-400 hover:text-gold nav-btn transition">
-            <i class="fa-solid fa-mosque text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">নামাজ</span>
-        </button>
-        <button onclick="switchTab('amal')" id="nav-btn-amal" class="flex flex-col items-center text-stone-400 hover:text-gold nav-btn transition">
-            <i class="fa-solid fa-star-and-crescent text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">আমল</span>
-        </button>
-        <button onclick="switchTab('zikir')" id="nav-btn-zikir" class="flex flex-col items-center text-stone-400 hover:text-gold nav-btn transition">
-            <i class="fa-solid fa-circle-dot text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">জিকির</span>
-        </button>
-        <button onclick="switchTab('quran')" id="nav-btn-quran" class="flex flex-col items-center text-stone-400 hover:text-gold nav-btn transition">
-            <i class="fa-solid fa-book-quran text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">কুরআন</span>
-        </button>
-        <button onclick="switchTab('duas')" id="nav-btn-duas" class="flex flex-col items-center text-stone-400 hover:text-gold nav-btn transition">
-            <i class="fa-solid fa-hands-praying text-lg"></i>
-            <span class="text-[10px] mt-1 font-medium">দোয়া</span>
-        </button>
-    </nav>
-
-    <!-- Custom Modal for Alerts/Inputs -->
-    <div id="custom-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-        <div class="bg-cardbrown w-full max-w-sm rounded-2xl gold-border p-5 space-y-4 shadow-2xl">
-            <h3 id="modal-title" class="font-bold text-base text-gold">বিজ্ঞপ্তি</h3>
-            <div id="modal-content" class="text-sm text-stone-300">
-                <!-- Content here -->
-            </div>
-            <div id="modal-actions" class="flex justify-end gap-2 pt-2">
-                <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-darkbrown text-stone-300 text-xs font-semibold">বন্ধ করুন</button>
-            </div>
+      <!-- Powerful Section Highlight -->
+      <div class="bg-gradient-to-r from-brand-card via-[#221E1A] to-brand-card p-3 rounded-xl border border-brand-border flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+          <i class="fa-solid fa-award text-lg"></i>
         </div>
+        <div>
+          <span class="text-[10px] text-brand-gold font-bold uppercase tracking-wider">আজকের হাইলাইট</span>
+          <p class="text-xs text-brand-textMain font-medium">আজ আপনার সবচেয়ে শক্তিশালী সেকশন ছিল: <span class="text-brand-gold font-semibold">ফজরের যিকর ও ইস্তিগফার</span></p>
+        </div>
+      </div>
+
+      <!-- Quick Prayer Status Cards -->
+      <div class="space-y-2">
+        <div class="flex justify-between items-center px-1">
+          <h3 class="text-sm font-semibold text-brand-textMain flex items-center gap-2">
+            <i class="fa-solid fa-clock text-brand-gold text-xs"></i>
+            আজকের পাঁচ ওয়াক্ত নামাজ
+          </h3>
+          <span class="text-xs text-brand-textMuted" id="todayPrayerSummary">০/৫ ওয়াক্ত</span>
+        </div>
+
+        <div id="quickPrayerList" class="space-y-2">
+          <!-- Dynamically populated prayers -->
+        </div>
+      </div>
+
+      <!-- Quick Amal Checklist -->
+      <div class="space-y-2 pt-2">
+        <div class="flex justify-between items-center px-1">
+          <h3 class="text-sm font-semibold text-brand-textMain flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-brand-gold text-xs"></i>
+            জরুরি দৈনন্দিন আমল
+          </h3>
+          <button onclick="switchTab('amal')" class="text-xs text-brand-gold hover:underline">সবগুলো দেখুন</button>
+        </div>
+        <div id="quickAmalList" class="space-y-2">
+          <!-- Dynamically Populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: নামাজ (PRAYER & KAZA MANAGEMENT) -->
+    <section id="tab-namaz" class="view-tab hidden space-y-4">
+      <div class="bg-brand-card p-4 rounded-xl border border-brand-border space-y-3">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-base font-bold text-brand-textMain">নামাজ ও কাজা ম্যানেজমেন্ট</h2>
+            <p class="text-xs text-brand-textMuted">ওয়াক্তভিত্তিক হিসাব এবং কাজা ক্লিয়ারেন্স রুটিন</p>
+          </div>
+          <button onclick="openKazaModal()" class="px-3 py-1.5 rounded-lg gold-gradient-bg text-brand-bg font-bold text-xs shadow hover:opacity-90 transition">
+            <i class="fa-solid fa-calculator mr-1"></i> কাজা হিসাব
+          </button>
+        </div>
+
+        <!-- Kaza Overview Card -->
+        <div class="grid grid-cols-2 gap-2 pt-2">
+          <div class="bg-brand-input p-3 rounded-lg border border-brand-border">
+            <span class="text-[11px] text-brand-textMuted">চলতি মাসের আদায়</span>
+            <p id="monthPrayersCompleted" class="text-lg font-bold text-brand-accentGreen">০ ওয়াক্ত</p>
+          </div>
+          <div class="bg-brand-input p-3 rounded-lg border border-brand-border">
+            <span class="text-[11px] text-brand-textMuted">মোট বকেয়া কাজা</span>
+            <p id="totalKazaPending" class="text-lg font-bold text-brand-accentRed">০ ওয়াক্ত</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prayer Breakdown Tabs / Detailed View -->
+      <div class="space-y-3">
+        <h3 class="text-sm font-semibold text-brand-textMain">আজকের ওয়াক্তভিত্তিক ট্র্যাকিং</h3>
+        <div id="detailedPrayerContainer" class="space-y-2.5">
+          <!-- Dynamic Detailed Cards per Prayer -->
+        </div>
+      </div>
+
+      <!-- Kaza Breakdown Table Card -->
+      <div class="bg-brand-card p-4 rounded-xl border border-brand-border space-y-3">
+        <h3 class="text-sm font-semibold text-brand-gold">নামাজ অনুযায়ী কাজা হিসাব ও অগ্রগতি</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left text-brand-textMain">
+            <thead class="text-[11px] text-brand-textMuted bg-brand-input uppercase border-b border-brand-border">
+              <tr>
+                <th class="py-2 px-2">ওয়াক্ত</th>
+                <th class="py-2 px-1 text-center">বকেয়া</th>
+                <th class="py-2 px-1 text-center">আদায়কৃত</th>
+                <th class="py-2 px-1 text-center">অ্যাকশন</th>
+              </tr>
+            </thead>
+            <tbody id="kazaTableBody" class="divide-y divide-brand-border">
+              <!-- Dynamically generated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: আমল (AMAL & ROUTINE TRACKER) -->
+    <section id="tab-amal" class="view-tab hidden space-y-4">
+      <div class="flex justify-between items-center">
+        <h2 class="text-base font-bold text-brand-textMain">দৈনন্দিন আমল ও রুটিন</h2>
+        <button onclick="openCustomAmalModal()" class="px-3 py-1.5 rounded-lg bg-brand-card border border-brand-gold text-brand-gold text-xs font-semibold hover:bg-brand-input flex items-center gap-1">
+          <i class="fa-solid fa-plus"></i> নতুন আমল
+        </button>
+      </div>
+
+      <!-- Time Section Filter -->
+      <div class="flex gap-2 overflow-x-auto pb-1 text-xs">
+        <button onclick="filterAmal('all')" class="amal-filter-btn px-3 py-1.5 rounded-lg bg-brand-gold text-brand-bg font-semibold whitespace-nowrap">সবগুলো</button>
+        <button onclick="filterAmal('fajr')" class="amal-filter-btn px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border text-brand-textMuted whitespace-nowrap">ফজরের পর</button>
+        <button onclick="filterAmal('morning')" class="amal-filter-btn px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border text-brand-textMuted whitespace-nowrap">সকাল</button>
+        <button onclick="filterAmal('asr')" class="amal-filter-btn px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border text-brand-textMuted whitespace-nowrap">আসর/সন্ধ্যা</button>
+        <button onclick="filterAmal('isha')" class="amal-filter-btn px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border text-brand-textMuted whitespace-nowrap">এশার পর/রাতে</button>
+      </div>
+
+      <!-- Dynamic Amal Routine List -->
+      <div id="amalRoutineList" class="space-y-2">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- VIEW 4: যিকর (DHIKR COUNTER) -->
+    <section id="tab-dhikr" class="view-tab hidden space-y-4">
+      <!-- Main Digital Tasbih Counter Container -->
+      <div class="bg-brand-card rounded-2xl p-5 border border-brand-border space-y-4 text-center shadow-xl">
+        <div class="flex justify-between items-center">
+          <select id="dhikrSelector" onchange="selectDhikrItem()" class="bg-brand-input text-brand-gold text-xs border border-brand-border rounded-lg px-2.5 py-1.5 focus:outline-none">
+            <option value="subhanallah">সুবহানাল্লাহ (৩৩ বার)</option>
+            <option value="alhamdulillah">আলহামদুলিল্লাহ (৩৩ বার)</option>
+            <option value="allahuakbar">আল্লাহু আকবার (৩৪ বার)</option>
+            <option value="astagfirullah">আস্তাগফিরুল্লাহ (১০০ বার)</option>
+            <option value="la_ilaha">লা ইলাহা ইল্লাল্লাহ</option>
+            <option value="durood">দরূদ শরীফ</option>
+          </select>
+          <button onclick="openAddDhikrModal()" class="text-xs text-brand-gold hover:underline"><i class="fa-solid fa-plus mr-1"></i>নতুন যুক্ত করুন</button>
+        </div>
+
+        <!-- Arabic & Meaning Card -->
+        <div class="bg-brand-input/60 p-3 rounded-xl border border-brand-border/60">
+          <p id="dhikrArabic" class="text-xl font-bold text-brand-gold tracking-wide">سُبْحَانَ اللهِ</p>
+          <p id="dhikrBangla" class="text-xs text-brand-textMuted mt-1">আল্লাহ তাআলা অতীব পবিত্র</p>
+        </div>
+
+        <!-- Big Touch Counter Button -->
+        <div class="relative py-4 flex justify-center items-center">
+          <button id="dhikrTapBtn" onclick="incrementDhikr()" class="w-44 h-44 rounded-full gold-gradient-bg shadow-2xl flex flex-col items-center justify-center border-4 border-brand-gold/40 active:scale-95 transition-transform duration-100">
+            <span class="text-xs uppercase font-bold text-brand-bg/80 tracking-widest">গণনা</span>
+            <span id="dhikrCounterVal" class="text-5xl font-black text-brand-bg my-1">০</span>
+            <span id="dhikrTargetVal" class="text-[11px] font-bold text-brand-bg/80">লক্ষ্য: ৩৩</span>
+          </button>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex justify-center gap-4">
+          <button onclick="resetDhikrCounter()" class="px-4 py-2 bg-brand-input border border-brand-border text-brand-textMuted rounded-xl text-xs font-semibold hover:text-brand-accentRed flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-rotate-left"></i> রিসেট
+          </button>
+          <button onclick="toggleVibration()" id="vibeToggleBtn" class="px-4 py-2 bg-brand-input border border-brand-border text-brand-gold rounded-xl text-xs font-semibold flex items-center gap-1.5">
+            <i class="fa-solid fa-mobile-screen-button"></i> ভাইব্রেশন: অন
+          </button>
+        </div>
+      </div>
+
+      <!-- Preset Tasbih List -->
+      <div class="bg-brand-card rounded-xl p-4 border border-brand-border space-y-3">
+        <h3 class="text-sm font-semibold text-brand-gold">আপনার কাস্টম যিকর তালিকা</h3>
+        <div id="customDhikrList" class="space-y-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: আত্মসংশোধন ও মুহাসাবাহ (MUHASABAH & REFLECTION - SCREEN 5 Inspired) -->
+    <section id="tab-reflection" class="view-tab hidden space-y-4">
+      <div class="bg-brand-card p-4 rounded-xl border border-brand-border space-y-3">
+        <div class="flex justify-between items-center">
+          <h2 class="text-base font-bold text-brand-textMain">আত্মসংশোধন ও মুহাসাবাহ</h2>
+          <span class="px-2 py-0.5 rounded text-[10px] bg-brand-gold/20 text-brand-gold border border-brand-gold/30">গোপন নোট</span>
+        </div>
+        <p class="text-xs text-brand-textMuted">নিজের দৈনন্দিন ভুল-ত্রুটি চিহ্নিত করুন এবং সংশোধনের পরিকল্পনা লিখে রাখুন।</p>
+
+        <!-- Dynamic Presets Dropdown & Inputs -->
+        <div class="space-y-3 pt-2">
+          <div>
+            <label class="block text-xs text-brand-gold mb-1 font-medium">ভুল / গুনাহ এর প্রিসেট</label>
+            <select id="presetMistake" onchange="applyPresetMistake()" class="w-full bg-brand-input text-brand-textMain text-xs border border-brand-border rounded-lg p-2.5 focus:outline-none">
+              <option value="">-- পছন্দ করুন অথবা নিচে লিখুন --</option>
+              <option value="নামাজে মনোযোগের অভাব বা জামাত মিস">নামাজে মনোযোগের অভাব বা জামাত মিস</option>
+              <option value="অনর্থক সময় অপচয় / সোশ্যাল মিডিয়া">অনর্থক সময় অপচয় / সোশ্যাল মিডিয়া</option>
+              <option value="রাগ নিয়ন্ত্রণ না করতে পারা">রাগ নিয়ন্ত্রণ না করতে পারা</option>
+              <option value="গীবত বা অসত্য কথা বলা">গীবত বা অসত্য কথা বলা</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-gold mb-1 font-medium">ভুল / গুনাহ</label>
+            <input type="text" id="inputMistake" placeholder="আজ কী ভুল হয়েছে..." class="w-full bg-brand-input text-brand-textMain text-xs border border-brand-border rounded-lg p-2.5 focus:outline-none focus:border-brand-gold">
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-gold mb-1 font-medium">সংশোধনের উপায়ের প্রিসেট</label>
+            <select id="presetCorrection" onchange="applyPresetCorrection()" class="w-full bg-brand-input text-brand-textMain text-xs border border-brand-border rounded-lg p-2.5 focus:outline-none">
+              <option value="">-- পছন্দ করুন অথবা নিচে লিখুন --</option>
+              <option value="তওবা করে ১০০ বার ইস্তিগফার পড়া">তওবা করে ১০০ বার ইস্তিগফার পড়া</option>
+              <option value="নফল সদকা বা নফল নামাজ আদায়">নফল সদকা বা নফল নামাজ আদায়</option>
+              <option value="মোবাইল ফোন দূরে সরিয়ে রাখা">মোবাইল ফোন দূরে সরিয়ে রাখা</option>
+              <option value="যার কাছে গীবত করেছি তার জন্য দোয়া">যার কাছে গীবত করেছি তার জন্য দোয়া</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs text-brand-gold mb-1 font-medium">সংশোধনের উপায়</label>
+            <input type="text" id="inputCorrection" placeholder="কীভাবে সংশোধন করবেন..." class="w-full bg-brand-input text-brand-textMain text-xs border border-brand-border rounded-lg p-2.5 focus:outline-none focus:border-brand-gold">
+          </div>
+
+          <!-- Reflection Status Pill Buttons -->
+          <div>
+            <label class="block text-xs text-brand-gold mb-1.5 font-medium">অবস্থা নির্ধারণ করুন</label>
+            <div class="flex gap-2">
+              <button type="button" onclick="setReflectionStatus('Planned')" id="btnStatusPlanned" class="flex-1 py-1.5 rounded-lg border text-xs font-semibold bg-brand-gold/20 border-brand-gold text-brand-gold">পরিকল্পিত</button>
+              <button type="button" onclick="setReflectionStatus('Completed')" id="btnStatusCompleted" class="flex-1 py-1.5 rounded-lg border text-xs font-semibold bg-brand-input border-brand-border text-brand-textMuted">সম্পন্ন</button>
+              <button type="button" onclick="setReflectionStatus('Discarded')" id="btnStatusDiscarded" class="flex-1 py-1.5 rounded-lg border text-xs font-semibold bg-brand-input border-brand-border text-brand-textMuted">বাদ দেওয়া হয়েছে</button>
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <button onclick="saveMuhasabahLog()" class="w-full py-2.5 rounded-xl gold-gradient-bg text-brand-bg font-bold text-xs shadow flex items-center justify-center gap-2 hover:opacity-95 transition mt-2">
+            <i class="fa-solid fa-user-shield"></i> গোপনে সংরক্ষণ করুন
+          </button>
+        </div>
+      </div>
+
+      <!-- Pending Corrections List -->
+      <div class="space-y-2">
+        <h3 class="text-sm font-semibold text-brand-gold flex items-center gap-2">
+          <i class="fa-solid fa-clipboard-list text-xs"></i>
+          অপেক্ষমাণ সংশোধন তালিকা
+        </h3>
+        <div id="muhasabahLogList" class="space-y-2">
+          <!-- Dynamically populated entries -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: আরও (MORE NAVIGATION & TOOLS) -->
+    <section id="tab-more" class="view-tab hidden space-y-4">
+      <div class="bg-brand-card p-4 rounded-xl border border-brand-border text-center space-y-1">
+        <div class="w-16 h-16 rounded-full gold-gradient-bg mx-auto flex items-center justify-center text-brand-bg font-black text-2xl shadow-lg">
+          আ
+        </div>
+        <h2 class="text-base font-bold text-brand-textMain">আজকের আমল - Pro</h2>
+        <p class="text-xs text-brand-textMuted">একটি পূর্ণাঙ্গ ও আধুনিক ইসলামিক জীবনধারা অ্যাপ</p>
+      </div>
+
+      <!-- Menu Grid Cards -->
+      <div class="grid grid-cols-2 gap-3">
+        <div onclick="openReadingModal()" class="bg-brand-card p-3.5 rounded-xl border border-brand-border hover:border-brand-gold/50 cursor-pointer transition space-y-1">
+          <i class="fa-solid fa-book-open text-brand-gold text-lg"></i>
+          <h4 class="text-xs font-bold text-brand-textMain">পড়া লগ</h4>
+          <p class="text-[10px] text-brand-textMuted">কুরআন, হাদিস ও তাফসির</p>
+        </div>
+
+        <div onclick="switchTab('reflection')" class="bg-brand-card p-3.5 rounded-xl border border-brand-border hover:border-brand-gold/50 cursor-pointer transition space-y-1">
+          <i class="fa-solid fa-brain text-brand-gold text-lg"></i>
+          <h4 class="text-xs font-bold text-brand-textMain">মুহাসাবাহ</h4>
+          <p class="text-[10px] text-brand-textMuted">আত্মসংশোধন ও পরিকল্পনা</p>
+        </div>
+
+        <div onclick="openKazaModal()" class="bg-brand-card p-3.5 rounded-xl border border-brand-border hover:border-brand-gold/50 cursor-pointer transition space-y-1">
+          <i class="fa-solid fa-calculator text-brand-gold text-lg"></i>
+          <h4 class="text-xs font-bold text-brand-textMain">কাজা ট্র্যাকার</h4>
+          <p class="text-[10px] text-brand-textMuted">নামাজ হিসাব ও পরিকল্পনা</p>
+        </div>
+
+        <div onclick="showToast('দৈনিক রিমাইন্ডার ফিচার শীঘ্রই আসছে!')" class="bg-brand-card p-3.5 rounded-xl border border-brand-border hover:border-brand-gold/50 cursor-pointer transition space-y-1">
+          <i class="fa-solid fa-bell text-brand-gold text-lg"></i>
+          <h4 class="text-xs font-bold text-brand-textMain">রিমাইন্ডার ও অ্যালার্ম</h4>
+          <p class="text-[10px] text-brand-textMuted">আমলের সময়সূচি</p>
+        </div>
+      </div>
+
+      <!-- Data Management & Backup -->
+      <div class="bg-brand-card p-4 rounded-xl border border-brand-border space-y-3">
+        <h3 class="text-sm font-semibold text-brand-gold">ডেটা ব্যাকআপ ও রিসেট</h3>
+        <div class="flex gap-2">
+          <button onclick="exportUserData()" class="flex-1 py-2 bg-brand-input border border-brand-border rounded-lg text-xs font-medium text-brand-textMain hover:border-brand-gold flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-download text-brand-gold"></i> ব্যাকআপ ব্যাকঅফ (JSON)
+          </button>
+          <button onclick="triggerImportJSON()" class="flex-1 py-2 bg-brand-input border border-brand-border rounded-lg text-xs font-medium text-brand-textMain hover:border-brand-gold flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-upload text-brand-gold"></i> রিস্টোর করুন
+          </button>
+          <input type="file" id="jsonFileInput" class="hidden" accept=".json" onchange="importUserData(event)">
+        </div>
+        <button onclick="confirmClearData()" class="w-full py-2 bg-red-900/20 border border-red-500/30 text-red-400 rounded-lg text-xs font-medium hover:bg-red-900/40 transition">
+          <i class="fa-solid fa-trash-can mr-1"></i> সমস্ত ডেটা রিসেট করুন
+        </button>
+      </div>
+
+      <div class="text-center text-[11px] text-brand-textMuted pt-2">
+        সংস্করণ ২.৪.০ (PWA) • com.amaltracker.app inspired
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FIXED BOTTOM NAVIGATION BAR -->
+  <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 bg-brand-bg/95 backdrop-blur-lg border-t border-brand-border px-3 py-2 flex items-center justify-between">
+    <button onclick="switchTab('today')" id="nav-today" class="nav-btn flex-1 flex flex-col items-center gap-1 text-brand-gold">
+      <i class="fa-solid fa-house-chimney text-base"></i>
+      <span class="text-[10px] font-medium">আজ</span>
+    </button>
+
+    <button onclick="switchTab('namaz')" id="nav-namaz" class="nav-btn flex-1 flex flex-col items-center gap-1 text-brand-textMuted hover:text-brand-gold">
+      <i class="fa-solid fa-person-praying text-base"></i>
+      <span class="text-[10px] font-medium">নামাজ</span>
+    </button>
+
+    <!-- Elevated Center Circular Icon Button -->
+    <div class="relative -top-5 flex justify-center flex-1">
+      <button onclick="switchTab('amal')" id="nav-amal" class="w-12 h-12 rounded-full gold-gradient-bg text-brand-bg flex items-center justify-center shadow-2xl border-4 border-brand-bg transform active:scale-90 transition">
+        <i class="fa-solid fa-book-quran text-lg"></i>
+      </button>
     </div>
 
-    <script>
-        const APP_STORAGE_KEY = 'noorul_amal_app_data_v1';
-        
-        let appData = {
-            city: 'Dhaka',
-            streak: 0,
-            maxStreak: 0,
-            lastActiveDate: '',
-            salah: {}, // { 'YYYY-MM-DD': { Fajr: {status, jamaat}, ... } }
-            amals: {}, // { 'YYYY-MM-DD': { amalId: boolean } }
-            customAmals: [
-                { id: 'ca_1', name: 'কাহাফ সূরা তিলাওয়াত (শুক্রবার)', category: 'quran', target: 1 },
-                { id: 'ca_2', name: 'নফল চাশত নামাজ', category: 'sunnah', target: 2 }
-            ],
-            zikirCounts: {
-                'subhanallah': 0,
-                'alhamdulillah': 0,
-                'allahuakbar': 0,
-                'istighfar': 0,
-                'durood': 0
-            },
-            activeZikirKey: 'subhanallah',
-            quran: {
-                lastRead: 'সূরা আল-বাকারা, আয়াত ২৫৫',
-                todayPages: 0,
-                surahs: { 'Al-Mulk': true, 'Al-Kahf': false, 'Yasin': false }
-            },
-            duas: {
-                favorites: []
-            },
-            routine: [
-                { id: 'r_1', time: 'ফজরের পর', task: 'কুরআন তিলাওয়াত ও মর্নিং জিকির', completed: false },
-                { id: 'r_2', time: 'দুপুর', task: 'যোহর নামাজ ও জোহরের সুন্নাহ', completed: false }
-            ],
-            qaza: { Fajr: 0, Dhuhr: 0, Asr: 0, Maghrib: 0, Isha: 0 }
-        };
+    <button onclick="switchTab('dhikr')" id="nav-dhikr" class="nav-btn flex-1 flex flex-col items-center gap-1 text-brand-textMuted hover:text-brand-gold">
+      <i class="fa-solid fa-repeat text-base"></i>
+      <span class="text-[10px] font-medium">যিকর</span>
+    </button>
 
-        const predefinedAmals = [
-            { id: 'amal_quran', name: 'কুরআন তিলাওয়াত (কমপক্ষে ১ পৃষ্ঠা)', category: 'quran' },
-            { id: 'amal_mulk', name: 'সূরা মুলক তিলাওয়াত (রাতের পূর্বে)', category: 'quran' },
-            { id: 'amal_morn_eve', name: 'সকাল-সন্ধ্যার মাসনুন দোয়া ও জিকির', category: 'daily' },
-            { id: 'amal_istighfar', name: 'ইস্তিগফার পাঠ (কমপক্ষে ১০০ বার)', category: 'quran' },
-            { id: 'amal_durood', name: 'দরুদ শরীফ পাঠ (কমপক্ষে ১০০ বার)', category: 'quran' },
-            { id: 'amal_parents', name: 'মা-বাবার জন্য দোয়া ও সেবা', category: 'daily' },
-            { id: 'amal_tauba', name: 'তাহাজ্জুদ বা নফল সালাত', category: 'sunnah' }
-        ];
+    <button onclick="switchTab('more')" id="nav-more" class="nav-btn flex-1 flex flex-col items-center gap-1 text-brand-textMuted hover:text-brand-gold">
+      <i class="fa-solid fa-ellipsis text-base"></i>
+      <span class="text-[10px] font-medium">আরও</span>
+    </button>
+  </nav>
 
-        const zikirList = {
-            'subhanallah': { name: 'সুবহানাল্লাহ', arabic: 'سُبْحَانَ اللَّهِ', meaning: 'আল্লাহ পবিত্র ও মহিমাময়', target: 33 },
-            'alhamdulillah': { name: 'আলহামদুলিল্লাহ', arabic: 'الْحَمْدُ لِلَّهِ', meaning: 'সকল প্রশংসা আল্লাহর জন্য', target: 33 },
-            'allahuakbar': { name: 'আল্লাহু আকবার', arabic: 'اللَّهُ أَكْبَرُ', meaning: 'আল্লাহ সবচেয়ে মহান', target: 34 },
-            'istighfar': { name: 'আস্তাগফিরুল্লাহ', arabic: 'أَسْتَغْفِرُ اللَّهَ', meaning: 'আমি আল্লাহর ক্ষমা প্রার্থনা করছি', target: 100 },
-            'durood': { name: 'দরুদ শরীফ', arabic: 'صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ', meaning: 'আল্লাহ তাআলা তাঁর উপর শান্তি বর্ষণ করুন', target: 100 }
-        };
+  <!-- MODAL 1: পড়া লগ (READING LOG MODAL - SCREEN 1 Inspired) -->
+  <div id="modalReadingLog" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-brand-card border border-brand-border w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl p-5 space-y-4 modal-enter">
+      <div class="flex justify-between items-center border-b border-brand-border pb-3">
+        <h3 class="text-base font-bold text-brand-gold flex items-center gap-2">
+          <i class="fa-solid fa-book-open"></i> পড়া লগ করুন
+        </h3>
+        <button onclick="closeModal('modalReadingLog')" class="text-brand-textMuted hover:text-brand-textMain"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
 
-        const duasData = [
-            { id: 'd_1', cat: 'morning', title: 'সকালের দোয়া', arabic: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ', transliteration: 'అస్బాహ్నా ওয়া আসবাহাল মূল্কু লিল্লাহ', meaning: 'আমরা ও সমগ্র সৃষ্টিজগতের মালিকানা সকালে আল্লাহর জন্যই রয়েছে।' },
-            { id: 'd_2', cat: 'morning', title: 'সন্ধ্যার দোয়া', arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ', transliteration: 'আমসাইন ওয়া আমসাল মূল্কু লিল্লাহ', meaning: 'আমরা ও সমগ্র সৃষ্টিজগতের মালিকানা সন্ধ্যায় আল্লাহর জন্যই রয়েছে।' },
-            { id: 'd_3', cat: 'salah', title: 'সালামের পর দোয়া', arabic: 'اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ', transliteration: 'আল্লাহুম্মা আনতাস সালাম ওয়া মিনকাস সালাম', meaning: 'হে আল্লাহ! আপনি শান্তিময় এবং আপনার থেকেই শান্তি আসে।' },
-            { id: 'd_4', cat: 'daily', title: 'ঘুমানোর দোয়া', arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', transliteration: 'বিসমিকা আল্লাহুম্মা আমুতু ওয়া আহইয়া', meaning: 'হে আল্লাহ! আপনার নামেই আমি মৃত্যুবরণ করি এবং জীবিত হই।' }
-        ];
+      <div class="space-y-3 max-h-[75vh] overflow-y-auto pr-1 text-xs">
+        <div>
+          <label class="block text-brand-textMuted mb-1 font-medium">বিষয় বা শিরোনাম</label>
+          <input type="text" id="readTitle" placeholder="উদাহরণ: সূরা আল-বাকারা বা তাফসির" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:border-brand-gold focus:outline-none">
+        </div>
 
-        window.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            checkAndResetDaily();
-            renderHeaderDate();
-            renderHomeDashboard();
-            renderSalahList();
-            renderAmalList();
-            renderZikirInterface();
-            renderQuranSection();
-            renderDuasSection();
-            renderStatsSection();
-            renderRoutineSection();
-            
-            // Register PWA Service Worker if supported
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('data:text/javascript;base64,' + btoa(`
-                    self.addEventListener('install', e => { self.skipWaiting(); });
-                    self.addEventListener('activate', e => { clients.claim(); });
-                    self.addEventListener('fetch', e => { e.respondWith(fetch(e.request).catch(() => caches.match(e.request))); });
-                `)).catch(() => {});
-            }
-        });
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-brand-textMuted mb-1 font-medium">টাইপ</label>
+            <select id="readType" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+              <option value="তাফসির">তাফসির</option>
+              <option value="কুরআন">কুরআন</option>
+              <option value="হাদিস">হাদিস</option>
+              <option value="ইসলামিক বই">ইসলামিক বই</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-brand-textMuted mb-1 font-medium">একক (Unit)</label>
+            <select id="readUnit" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+              <option value="মিনিট">মিনিট</option>
+              <option value="পৃষ্ঠা">পৃষ্ঠা</option>
+              <option value="আয়াত">আয়াত</option>
+            </select>
+          </div>
+        </div>
 
-        function saveData() {
-            try {
-                localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(appData));
-            } catch (e) {
-                console.error('Storage save error:', e);
-            }
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-brand-textMuted mb-1 font-medium">শুরুর রেফারেন্স</label>
+            <input type="text" id="readStartRef" placeholder="পৃষ্ঠা / আয়াত ১" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-brand-textMuted mb-1 font-medium">শেষ রেফারেন্স</label>
+            <input type="text" id="readEndRef" placeholder="পৃষ্ঠা / আয়াত ১০" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-brand-textMuted mb-1 font-medium">মোট সময় (মিনিটে)</label>
+          <input type="number" id="readMinutes" placeholder="১৫" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-brand-textMuted mb-1 font-medium">পড়ার বিষয়ভিত্তিক নোট</label>
+          <textarea id="readNote" rows="2" placeholder="সংক্ষিপ্ত গুরুত্বপূর্ণ শিক্ষা বা নোট লিখুন..." class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none"></textarea>
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2 border-t border-brand-border">
+        <button onclick="closeModal('modalReadingLog')" class="flex-1 py-2.5 rounded-xl border border-brand-border text-brand-textMuted text-xs font-semibold hover:bg-brand-input">বাতিল</button>
+        <button onclick="saveReadingLog()" class="flex-1 py-2.5 rounded-xl gold-gradient-bg text-brand-bg text-xs font-bold shadow hover:opacity-95">সেভ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: কাজা ক্লিয়ারেন্স (KAZA CLEARANCE POPUP MODAL) -->
+  <div id="modalKazaClearance" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-brand-border w-full max-w-md rounded-2xl p-5 space-y-4 modal-enter">
+      <div class="flex justify-between items-center border-b border-brand-border pb-3">
+        <h3 class="text-base font-bold text-brand-gold flex items-center gap-2">
+          <i class="fa-solid fa-calculator"></i> কাজা ক্লিয়ারেন্স রুটিন
+        </h3>
+        <button onclick="closeModal('modalKazaClearance')" class="text-brand-textMuted hover:text-brand-textMain"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <p class="text-brand-textMuted">আপনার জীবনের আনুমানিক কাজা আদায়ের হিসাব বা লক্ষ্য সেট করুন:</p>
+
+        <div class="space-y-2">
+          <div class="flex justify-between items-center bg-brand-input p-2.5 rounded-lg border border-brand-border">
+            <span>ফজর</span>
+            <div class="flex items-center gap-2">
+              <button onclick="adjustKazaCount('fajr', -1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">-</button>
+              <span id="kazaVal-fajr" class="font-bold w-8 text-center">০</span>
+              <button onclick="adjustKazaCount('fajr', 1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">+</button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center bg-brand-input p-2.5 rounded-lg border border-brand-border">
+            <span>যোহর</span>
+            <div class="flex items-center gap-2">
+              <button onclick="adjustKazaCount('dhuhr', -1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">-</button>
+              <span id="kazaVal-dhuhr" class="font-bold w-8 text-center">০</span>
+              <button onclick="adjustKazaCount('dhuhr', 1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">+</button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center bg-brand-input p-2.5 rounded-lg border border-brand-border">
+            <span>আসর</span>
+            <div class="flex items-center gap-2">
+              <button onclick="adjustKazaCount('asr', -1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">-</button>
+              <span id="kazaVal-asr" class="font-bold w-8 text-center">০</span>
+              <button onclick="adjustKazaCount('asr', 1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">+</button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center bg-brand-input p-2.5 rounded-lg border border-brand-border">
+            <span>মাগরিব</span>
+            <div class="flex items-center gap-2">
+              <button onclick="adjustKazaCount('maghrib', -1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">-</button>
+              <span id="kazaVal-maghrib" class="font-bold w-8 text-center">০</span>
+              <button onclick="adjustKazaCount('maghrib', 1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">+</button>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center bg-brand-input p-2.5 rounded-lg border border-brand-border">
+            <span>ইশা & বিতর</span>
+            <div class="flex items-center gap-2">
+              <button onclick="adjustKazaCount('isha', -1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">-</button>
+              <span id="kazaVal-isha" class="font-bold w-8 text-center">০</span>
+              <button onclick="adjustKazaCount('isha', 1)" class="w-6 h-6 rounded bg-brand-card border border-brand-border text-brand-gold font-bold">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="closeModal('modalKazaClearance')" class="w-full py-2.5 rounded-xl gold-gradient-bg text-brand-bg font-bold text-xs shadow">সংরক্ষণ করুন</button>
+    </div>
+  </div>
+
+  <!-- MODAL 3: কাস্টম আমল যোগ (CUSTOM AMAL CREATION) -->
+  <div id="modalCustomAmal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-brand-border w-full max-w-md rounded-2xl p-5 space-y-4 modal-enter">
+      <div class="flex justify-between items-center border-b border-brand-border pb-3">
+        <h3 class="text-base font-bold text-brand-gold flex items-center gap-2">
+          <i class="fa-solid fa-plus-circle"></i> নতুন কাস্টম আমল যুক্ত করুন
+        </h3>
+        <button onclick="closeModal('modalCustomAmal')" class="text-brand-textMuted hover:text-brand-textMain"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-brand-textMuted mb-1 font-medium">আমলের নাম</label>
+          <input type="text" id="customAmalName" placeholder="যেমন: সূরা মুলক তেলাওয়াত" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-brand-textMuted mb-1 font-medium">সময় / সেশন</label>
+            <select id="customAmalTime" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+              <option value="fajr">ফজরের পর</option>
+              <option value="morning">সকাল</option>
+              <option value="asr">আসর/সন্ধ্যা</option>
+              <option value="isha">এশার পর/রাতে</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-brand-textMuted mb-1 font-medium">লক্ষ্যমাত্রা (বার / মিনিট)</label>
+            <input type="number" id="customAmalTarget" value="1" class="w-full bg-brand-input text-brand-textMain border border-brand-border rounded-lg p-2.5 focus:outline-none">
+          </div>
+        </div>
+      </div>
+
+      <button onclick="saveCustomAmal()" class="w-full py-2.5 rounded-xl gold-gradient-bg text-brand-bg font-bold text-xs shadow">সংরক্ষণ করুন</button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-brand-card border border-brand-gold/50 text-brand-textMain px-4 py-2.5 rounded-xl shadow-2xl text-xs flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300">
+    <i class="fa-solid fa-circle-check text-brand-gold"></i>
+    <span id="toastMsg">সংরক্ষিত হয়েছে!</span>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    /* ==========================================================================
+       APP STATE & LOCAL STORAGE DATABASE MANAGEMENT
+       ========================================================================== */
+    const STORAGE_KEY = 'AMAL_TRACKER_PWA_DATA_V1';
+
+    let appState = {
+      prayers: {
+        fajr: { status: 'pending', jamat: false, sunnah: false, time: '০৫:১৫ AM' },
+        dhuhr: { status: 'pending', jamat: false, sunnah: false, time: '১২:৩০ PM' },
+        asr: { status: 'pending', jamat: false, sunnah: false, time: '০৪:৪৫ PM' },
+        maghrib: { status: 'pending', jamat: false, sunnah: false, time: '০৬:৪০ PM' },
+        isha: { status: 'pending', jamat: false, sunnah: false, time: '০৮:০০ PM' }
+      },
+      kaza: {
+        fajr: 12,
+        dhuhr: 8,
+        asr: 15,
+        maghrib: 5,
+        isha: 20
+      },
+      amals: [
+        { id: 1, title: 'মিসওয়াক করা', timeSlot: 'fajr', target: 1, current: 0, unit: 'বার' },
+        { id: 2, title: 'সকালের মাসনুন দোয়া ও যিকর', timeSlot: 'morning', target: 1, current: 0, unit: 'সেশন' },
+        { id: 3, title: 'সূরা ইয়াসিন তেলাওয়াত', timeSlot: 'morning', target: 1, current: 0, unit: 'বার' },
+        { id: 4, title: 'সাইয়িদুল ইস্তিগফার پڑھা', timeSlot: 'asr', target: 3, current: 0, unit: 'বার' },
+        { id: 5, title: 'সূরা মুলক তেলাওয়াত', timeSlot: 'isha', target: 1, current: 0, unit: 'বার' }
+      ],
+      dhikrCounts: {
+        subhanallah: { count: 0, target: 33, arabic: 'سُبْحَانَ اللهِ', bangla: 'আল্লাহ তাআলা অতীব পবিত্র' },
+        alhamdulillah: { count: 0, target: 33, arabic: 'الْحَمْدُ لِلَّهِ', bangla: 'সমস্ত প্রশংসা আল্লাহর জন্য' },
+        allahuakbar: { count: 0, target: 34, arabic: 'اللهُ أَكْبَرُ', bangla: 'আল্লাহ মহান' },
+        astagfirullah: { count: 0, target: 100, arabic: 'أَسْتَغْفِرُ اللهَ', bangla: 'আমি আল্লাহর কাছে ক্ষমা চাই' },
+        la_ilaha: { count: 0, target: 100, arabic: 'لَا إِلَهَ إِلَّا اللهُ', bangla: 'আল্লাহ ছাড়া কোনো উপাস্য নেই' },
+        durood: { count: 0, target: 100, arabic: 'صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ', bangla: 'আল্লাহ তাঁর উপর রহমত বর্ষণ করুন' }
+      },
+      currentSelectedDhikrKey: 'subhanallah',
+      vibrationEnabled: true,
+      readingLogs: [],
+      muhasabahLogs: [],
+      currentMuhasabahStatus: 'Planned',
+      dateHistory: {}
+    };
+
+    // Load data from LocalStorage on init
+    function loadState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          appState = { ...appState, ...JSON.parse(saved) };
+        } catch(e) {
+          console.error("Failed to parse storage", e);
+        }
+      }
+    }
+
+    // Save current state to LocalStorage
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      updateDashboardUI();
+    }
+
+    /* ==========================================================================
+       UI CONTROLLERS & TAB SWITCHING
+       ========================================================================== */
+    function switchTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.view-tab').forEach(el => el.classList.add('hidden'));
+      // Show selected tab
+      const targetView = document.getElementById('tab-' + tabId);
+      if (targetView) targetView.classList.remove('hidden');
+
+      // Highlight Nav Buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-brand-gold');
+        btn.classList.add('text-brand-textMuted');
+      });
+
+      const activeNav = document.getElementById('nav-' + tabId);
+      if (activeNav) {
+        activeNav.classList.add('text-brand-gold');
+        activeNav.classList.remove('text-brand-textMuted');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    /* ==========================================================================
+       MODAL CONTROLLERS
+       ========================================================================== */
+    function openReadingModal() { document.getElementById('modalReadingLog').classList.remove('hidden'); }
+    function openKazaModal() {
+      renderKazaModalInputs();
+      document.getElementById('modalKazaClearance').classList.remove('hidden');
+    }
+    function openCustomAmalModal() { document.getElementById('modalCustomAmal').classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('opacity-0');
+      setTimeout(() => toast.classList.add('opacity-0'), 2200);
+    }
+
+    /* ==========================================================================
+       PRAYER & TODAY DASHBOARD RENDERER
+       ========================================================================== */
+    const prayerNamesBn = {
+      fajr: 'ফজর',
+      dhuhr: 'যোহর',
+      asr: 'আসর',
+      maghrib: 'মাগরিব',
+      isha: 'ইশা'
+    };
+
+    function updateDashboardUI() {
+      renderQuickPrayers();
+      renderDetailedPrayers();
+      renderAmalRoutineList('all');
+      renderQuickAmalList();
+      renderKazaTable();
+      renderMuhasabahLogs();
+      updateOverallProgressRing();
+    }
+
+    function renderQuickPrayers() {
+      const container = document.getElementById('quickPrayerList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      let completedCount = 0;
+
+      Object.keys(appState.prayers).forEach(pKey => {
+        const prayer = appState.prayers[pKey];
+        if (prayer.status === 'done') completedCount++;
+
+        let statusBadge = '';
+        if (prayer.status === 'done') {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-brand-accentGreen/20 text-brand-accentGreen border border-brand-accentGreen/30">সম্পন্ন</span>`;
+        } else if (prayer.status === 'kaza') {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-brand-accentRed/20 text-brand-accentRed border border-brand-accentRed/30">কাজা</span>`;
+        } else {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-brand-border text-brand-textMuted">বাকি</span>`;
         }
 
-        function loadData() {
-            try {
-                const saved = localStorage.getItem(APP_STORAGE_KEY);
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    appData = { ...appData, ...parsed };
-                }
-            } catch (e) {
-                console.error('Storage load error:', e);
-            }
+        const div = document.createElement('div');
+        div.className = 'bg-brand-card p-3 rounded-xl border border-brand-border flex items-center justify-between';
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-brand-input border border-brand-border flex items-center justify-center text-brand-gold text-xs font-bold">
+              ${prayerNamesBn[pKey][0]}
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-brand-textMain">${prayerNamesBn[pKey]}</span>
+                ${statusBadge}
+              </div>
+              <span class="text-[10px] text-brand-textMuted">${prayer.time}</span>
+            </div>
+          </div>
+          <div class="flex gap-1">
+            <button onclick="setPrayerStatus('${pKey}', 'done')" class="px-2 py-1 rounded bg-brand-input hover:bg-brand-accentGreen/20 hover:text-brand-accentGreen border border-brand-border text-[11px]">সম্পন্ন</button>
+            <button onclick="setPrayerStatus('${pKey}', 'kaza')" class="px-2 py-1 rounded bg-brand-input hover:bg-brand-accentRed/20 hover:text-brand-accentRed border border-brand-border text-[11px]">কাজা</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('todayPrayerSummary').innerText = `${completedCount}/৫ ওয়াক্ত`;
+    }
+
+    function setPrayerStatus(pKey, status) {
+      appState.prayers[pKey].status = status;
+      saveState();
+      showToast(`${prayerNamesBn[pKey]} নামাজ ${status === 'done' ? 'সম্পন্ন' : 'কাজা'} হিসেবে চিহ্নিত`);
+    }
+
+    function togglePrayerDetailFlag(pKey, flag) {
+      appState.prayers[pKey][flag] = !appState.prayers[pKey][flag];
+      saveState();
+    }
+
+    function renderDetailedPrayers() {
+      const container = document.getElementById('detailedPrayerContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      Object.keys(appState.prayers).forEach(pKey => {
+        const prayer = appState.prayers[pKey];
+        const card = document.createElement('div');
+        card.className = 'bg-brand-card p-3.5 rounded-xl border border-brand-border space-y-2';
+        card.innerHTML = `
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-brand-gold">${prayerNamesBn[pKey]}</span>
+              <span class="text-[10px] text-brand-textMuted">(${prayer.time})</span>
+            </div>
+            <select onchange="setPrayerStatus('${pKey}', this.value)" class="bg-brand-input text-xs text-brand-textMain border border-brand-border rounded px-2 py-1 focus:outline-none">
+              <option value="pending" ${prayer.status==='pending'?'selected':''}>বাকি</option>
+              <option value="done" ${prayer.status==='done'?'selected':''}>সম্পন্ন</option>
+              <option value="kaza" ${prayer.status==='kaza'?'selected':''}>কাজা</option>
+            </select>
+          </div>
+          <div class="flex gap-4 text-xs text-brand-textMuted pt-1">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" ${prayer.jamat?'checked':''} onchange="togglePrayerDetailFlag('${pKey}', 'jamat')" class="accent-brand-gold rounded">
+              <span>জামাতে আদায়</span>
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" ${prayer.sunnah?'checked':''} onchange="togglePrayerDetailFlag('${pKey}', 'sunnah')" class="accent-brand-gold rounded">
+              <span>সুন্নাত আদায়</span>
+            </label>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       PROGRESS RING COMPUTATION
+       ========================================================================== */
+    function updateOverallProgressRing() {
+      let totalTasks = 5 + appState.amals.length;
+      let completed = 0;
+
+      Object.keys(appState.prayers).forEach(k => {
+        if (appState.prayers[k].status === 'done') completed++;
+      });
+
+      appState.amals.forEach(a => {
+        if (a.current >= a.target) completed++;
+      });
+
+      const percentage = Math.round((completed / totalTasks) * 100);
+      document.getElementById('overallPercentText').innerText = `${percentage}% সম্পন্ন`;
+
+      // Update Circle SVG Offset (Radius 26 => Circumference ~ 163.36)
+      const circle = document.getElementById('progressCircle');
+      if (circle) {
+        const circumference = 163.36;
+        const offset = circumference - (percentage / 100) * circumference;
+        circle.style.strokeDashoffset = offset;
+      }
+    }
+
+    /* ==========================================================================
+       AMAL & ROUTINE TRACKER LOGIC
+       ========================================================================== */
+    function renderAmalRoutineList(filter) {
+      const container = document.getElementById('amalRoutineList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const filtered = filter === 'all' ? appState.amals : appState.amals.filter(a => a.timeSlot === filter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p class="text-xs text-brand-textMuted text-center py-4">এই সেকশনে কোনো আমল পাওয়া যায়নি।</p>`;
+        return;
+      }
+
+      filtered.forEach(amal => {
+        const isCompleted = amal.current >= amal.target;
+        const div = document.createElement('div');
+        div.className = 'bg-brand-card p-3 rounded-xl border border-brand-border flex items-center justify-between';
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <button onclick="toggleAmalCheck(${amal.id})" class="w-6 h-6 rounded-lg border ${isCompleted ? 'bg-brand-gold border-brand-gold text-brand-bg' : 'border-brand-border text-transparent'} flex items-center justify-center transition">
+              <i class="fa-solid fa-check text-xs font-bold"></i>
+            </button>
+            <div>
+              <p class="text-xs font-bold ${isCompleted ? 'line-through text-brand-textMuted' : 'text-brand-textMain'}">${amal.title}</p>
+              <span class="text-[10px] text-brand-textMuted">লক্ষ্য: ${amal.current}/${amal.target} ${amal.unit}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <button onclick="incrementAmalCount(${amal.id})" class="px-2 py-1 bg-brand-input rounded border border-brand-border text-brand-gold text-xs font-bold">+</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function renderQuickAmalList() {
+      const container = document.getElementById('quickAmalList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      appState.amals.slice(0, 3).forEach(amal => {
+        const isCompleted = amal.current >= amal.target;
+        const div = document.createElement('div');
+        div.className = 'bg-brand-card p-2.5 rounded-xl border border-brand-border flex items-center justify-between text-xs';
+        div.innerHTML = `
+          <div class="flex items-center gap-2">
+            <i class="fa-solid ${isCompleted ? 'fa-circle-check text-brand-accentGreen' : 'fa-circle text-brand-border'}"></i>
+            <span class="${isCompleted ? 'line-through text-brand-textMuted' : 'text-brand-textMain'}">${amal.title}</span>
+          </div>
+          <span class="text-[10px] text-brand-gold">${amal.current}/${amal.target}</span>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleAmalCheck(id) {
+      const amal = appState.amals.find(a => a.id === id);
+      if (amal) {
+        if (amal.current >= amal.target) {
+          amal.current = 0;
+        } else {
+          amal.current = amal.target;
+        }
+        saveState();
+      }
+    }
+
+    function incrementAmalCount(id) {
+      const amal = appState.amals.find(a => a.id === id);
+      if (amal) {
+        amal.current++;
+        saveState();
+      }
+    }
+
+    function filterAmal(slot) {
+      document.querySelectorAll('.amal-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-gold', 'text-brand-bg');
+        btn.classList.add('bg-brand-card', 'text-brand-textMuted');
+      });
+      event.currentTarget.classList.add('bg-brand-gold', 'text-brand-bg');
+      event.currentTarget.classList.remove('bg-brand-card', 'text-brand-textMuted');
+      renderAmalRoutineList(slot);
+    }
+
+    function saveCustomAmal() {
+      const name = document.getElementById('customAmalName').value;
+      const time = document.getElementById('customAmalTime').value;
+      const target = parseInt(document.getElementById('customAmalTarget').value) || 1;
+
+      if (!name) return showToast('আমলের নাম প্রদান করুন');
+
+      appState.amals.push({
+        id: Date.now(),
+        title: name,
+        timeSlot: time,
+        target: target,
+        current: 0,
+        unit: 'বার'
+      });
+
+      document.getElementById('customAmalName').value = '';
+      closeModal('modalCustomAmal');
+      saveState();
+      showToast('নতুন আমল যুক্ত করা হয়েছে');
+    }
+
+    /* ==========================================================================
+       DHIKR DIGITAL COUNTER LOGIC
+       ========================================================================== */
+    function selectDhikrItem() {
+      const key = document.getElementById('dhikrSelector').value;
+      appState.currentSelectedDhikrKey = key;
+      const item = appState.dhikrCounts[key];
+
+      document.getElementById('dhikrArabic').innerText = item.arabic;
+      document.getElementById('dhikrBangla').innerText = item.bangla;
+      document.getElementById('dhikrCounterVal').innerText = item.count;
+      document.getElementById('dhikrTargetVal').innerText = `লক্ষ্য: ${item.target}`;
+    }
+
+    function incrementDhikr() {
+      const key = appState.currentSelectedDhikrKey;
+      appState.dhikrCounts[key].count++;
+      document.getElementById('dhikrCounterVal').innerText = appState.dhikrCounts[key].count;
+
+      if (appState.vibrationEnabled && navigator.vibrate) {
+        navigator.vibrate(40);
+      }
+
+      saveState();
+    }
+
+    function resetDhikrCounter() {
+      const key = appState.currentSelectedDhikrKey;
+      appState.dhikrCounts[key].count = 0;
+      document.getElementById('dhikrCounterVal').innerText = 0;
+      saveState();
+      showToast('কাউন্টার রিসেট করা হয়েছে');
+    }
+
+    function toggleVibration() {
+      appState.vibrationEnabled = !appState.vibrationEnabled;
+      const btn = document.getElementById('vibeToggleBtn');
+      btn.innerHTML = `<i class="fa-solid fa-mobile-screen-button"></i> ভাইব্রেশন: ${appState.vibrationEnabled ? 'অন' : 'অফ'}`;
+      saveState();
+    }
+
+    /* ==========================================================================
+       KAZA MANAGEMENT & TABLE
+       ========================================================================== */
+    function renderKazaTable() {
+      const tbody = document.getElementById('kazaTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      let totalPending = 0;
+
+      Object.keys(appState.kaza).forEach(key => {
+        const count = appState.kaza[key];
+        totalPending += count;
+
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-brand-border';
+        tr.innerHTML = `
+          <td class="py-2.5 px-2 font-semibold text-brand-gold">${prayerNamesBn[key]}</td>
+          <td class="py-2.5 px-1 text-center font-bold text-brand-accentRed">${count}</td>
+          <td class="py-2.5 px-1 text-center font-bold text-brand-accentGreen">০</td>
+          <td class="py-2.5 px-1 text-center">
+            <button onclick="clearOneKaza('${key}')" class="px-2 py-1 bg-brand-input hover:bg-brand-gold hover:text-brand-bg border border-brand-border rounded text-[10px]">১ আদায়</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('totalKazaPending').innerText = `${totalPending} ওয়াক্ত`;
+    }
+
+    function clearOneKaza(key) {
+      if (appState.kaza[key] > 0) {
+        appState.kaza[key]--;
+        saveState();
+        showToast(`${prayerNamesBn[key]} কাজা ১ টি কমানো হয়েছে`);
+      }
+    }
+
+    function renderKazaModalInputs() {
+      Object.keys(appState.kaza).forEach(k => {
+        const el = document.getElementById(`kazaVal-${k}`);
+        if (el) el.innerText = appState.kaza[k];
+      });
+    }
+
+    function adjustKazaCount(key, delta) {
+      appState.kaza[key] = Math.max(0, appState.kaza[key] + delta);
+      document.getElementById(`kazaVal-${key}`).innerText = appState.kaza[key];
+      saveState();
+    }
+
+    /* ==========================================================================
+       READING LOG MANAGEMENT
+       ========================================================================== */
+    function saveReadingLog() {
+      const title = document.getElementById('readTitle').value;
+      const type = document.getElementById('readType').value;
+      const unit = document.getElementById('readUnit').value;
+      const startRef = document.getElementById('readStartRef').value;
+      const endRef = document.getElementById('readEndRef').value;
+      const minutes = document.getElementById('readMinutes').value;
+      const note = document.getElementById('readNote').value;
+
+      if (!title) return showToast('বিষয় শিরোনাম লিখুন');
+
+      appState.readingLogs.push({
+        id: Date.now(),
+        date: new Date().toLocaleDateString('bn-BD'),
+        title, type, unit, startRef, endRef, minutes, note
+      });
+
+      closeModal('modalReadingLog');
+      saveState();
+      showToast('পড়া সফলভাবে লগ করা হয়েছে');
+    }
+
+    /* ==========================================================================
+       SELF REFLECTION & MUHASABAH (SCREEN 5)
+       ========================================================================== */
+    function applyPresetMistake() {
+      const val = document.getElementById('presetMistake').value;
+      if (val) document.getElementById('inputMistake').value = val;
+    }
+
+    function applyPresetCorrection() {
+      const val = document.getElementById('presetCorrection').value;
+      if (val) document.getElementById('inputCorrection').value = val;
+    }
+
+    function setReflectionStatus(status) {
+      appState.currentMuhasabahStatus = status;
+
+      ['Planned', 'Completed', 'Discarded'].forEach(s => {
+        const btn = document.getElementById(`btnStatus${s}`);
+        if (s === status) {
+          btn.className = 'flex-1 py-1.5 rounded-lg border text-xs font-semibold bg-brand-gold/20 border-brand-gold text-brand-gold';
+        } else {
+          btn.className = 'flex-1 py-1.5 rounded-lg border text-xs font-semibold bg-brand-input border-brand-border text-brand-textMuted';
+        }
+      });
+    }
+
+    function saveMuhasabahLog() {
+      const mistake = document.getElementById('inputMistake').value;
+      const correction = document.getElementById('inputCorrection').value;
+
+      if (!mistake) return showToast('ভুল বা বিষয় নির্দিষ্ট করুন');
+
+      appState.muhasabahLogs.unshift({
+        id: Date.now(),
+        date: new Date().toLocaleDateString('bn-BD'),
+        mistake,
+        correction,
+        status: appState.currentMuhasabahStatus
+      });
+
+      document.getElementById('inputMistake').value = '';
+      document.getElementById('inputCorrection').value = '';
+
+      saveState();
+      showToast('মুহাসাবাহ গোপনে ব্যাকআপে সংরক্ষণ করা হয়েছে');
+    }
+
+    function renderMuhasabahLogs() {
+      const container = document.getElementById('muhasabahLogList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (appState.muhasabahLogs.length === 0) {
+        container.innerHTML = `<p class="text-xs text-brand-textMuted text-center py-3">এখনো কোনো আত্মসংশোধন নোট নেই।</p>`;
+        return;
+      }
+
+      appState.muhasabahLogs.forEach(log => {
+        let statusBadge = '';
+        if (log.status === 'Completed') {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[9px] bg-brand-accentGreen/20 text-brand-accentGreen border border-brand-accentGreen/30">সম্পন্ন</span>`;
+        } else if (log.status === 'Planned') {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[9px] bg-brand-gold/20 text-brand-gold border border-brand-gold/30">পরিকল্পিত</span>`;
+        } else {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[9px] bg-brand-border text-brand-textMuted">বাদ দেওয়া হয়েছে</span>`;
         }
 
-        function getFormattedDate(date = new Date()) {
-            const y = date.getFullYear();
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `${y}-${m}-${d}`;
+        const card = document.createElement('div');
+        card.className = 'bg-brand-card p-3 rounded-xl border border-brand-border space-y-1.5 text-xs';
+        card.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] text-brand-textMuted">${log.date}</span>
+            ${statusBadge}
+          </div>
+          <p class="text-brand-accentRed font-medium">ভুল: ${log.mistake}</p>
+          <p class="text-brand-gold font-medium">সংশোধনের উপায়: ${log.correction || 'নির্দিষ্ট করা নেই'}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       BACKUP & RESTORE DATA (JSON)
+       ========================================================================== */
+    function exportUserData() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `Amal_Tracker_Backup_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('ব্যাকআপ ফাইল ডাউনলোড করা হয়েছে');
+    }
+
+    function triggerImportJSON() {
+      document.getElementById('jsonFileInput').click();
+    }
+
+    function importUserData(event) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          appState = { ...appState, ...imported };
+          saveState();
+          showToast('ডেটা সফলভাবে রিস্টোর হয়েছে!');
+        } catch(err) {
+          showToast('ত্রুটি: ভুল ব্যাকআপ ফাইল');
         }
-
-        function checkAndResetDaily() {
-            const today = getFormattedDate();
-            if (appData.lastActiveDate !== today) {
-                // Calculate streak if missed yesterday
-                if (appData.lastActiveDate) {
-                    const lastDate = new Date(appData.lastActiveDate);
-                    const currDate = new Date(today);
-                    const diffDays = Math.round((currDate - lastDate) / (1000 * 60 * 60 * 24));
-                    if (diffDays === 1) {
-                        appData.streak += 1;
-                    } else if (diffDays > 1) {
-                        appData.streak = 1;
-                    }
-                } else {
-                    appData.streak = 1;
-                }
-                if (appData.streak > appData.maxStreak) {
-                    appData.maxStreak = appData.streak;
-                }
-                appData.lastActiveDate = today;
-                saveData();
-            }
-            document.getElementById('streak-badge-count').innerText = appData.streak;
-        }
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-gold');
-                btn.classList.add('text-stone-400');
-            });
-
-            const targetSec = document.getElementById(`view-${tabId}`);
-            if (targetSec) targetSec.classList.remove('hidden');
-
-            const targetNav = document.getElementById(`nav-btn-${tabId}`);
-            if (targetNav) {
-                targetNav.classList.remove('text-stone-400');
-                targetNav.classList.add('text-gold');
-            }
-
-            // Refresh specific views
-            if (tabId === 'home') renderHomeDashboard();
-            if (tabId === 'stats') renderStatsSection();
-        }
-
-        function renderHeaderDate() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const bengaliDate = now.toLocaleDateString('bn-BD', options);
-            document.getElementById('header-date').innerText = bengaliDate;
-            document.getElementById('home-gregorian-date').innerText = bengaliDate;
-            
-            // Approximate Hijri simulation for UI elegance
-            document.getElementById('home-hijri-date').innerText = '১৪৪৫ হিজরি, পবিত্র মাস';
-            document.getElementById('current-city-label').innerText = appData.city === 'Dhaka' ? 'ঢাকা' : appData.city;
-            document.getElementById('settings-city-select').value = appData.city;
-        }
-
-        function renderHomeDashboard() {
-            const today = getFormattedDate();
-            if (!appData.salah[today]) appData.salah[today] = {};
-            if (!appData.amals[today]) appData.amals[today] = {};
-
-            // Prayer times grid
-            const prayers = [
-                { key: 'Fajr', name: 'ফজর', time: '০৫:০৫ এএম' },
-                { key: 'Dhuhr', name: 'যোহর', time: '১২:১৫ পিএম' },
-                { key: 'Asr', name: 'আসর', time: '০৪:৩০ পিএম' },
-                { key: 'Maghrib', name: 'মাগরিব', time: '০৫:৫২ পিএম' },
-                { key: 'Isha', name: 'ইশা', time: '০৭:১০ পিএম' }
-            ];
-
-            let gridHTML = '';
-            let completedSalahCount = 0;
-            prayers.forEach(p => {
-                const status = appData.salah[today][p.key]?.status;
-                const isDone = status && status !== 'missed';
-                if (isDone) completedSalahCount++;
-
-                gridHTML += `
-                    <div class="bg-darkbrown p-2 rounded-xl border ${isDone ? 'border-emerald-500/50 bg-emerald-500/10' : 'border-borderbrown'} text-center">
-                        <span class="text-[11px] font-semibold text-stone-300 block">${p.name}</span>
-                        <span class="text-[10px] text-gold mt-0.5 block">${p.time}</span>
-                        <span class="text-[9px] mt-1 inline-block px-1.5 py-0.5 rounded ${isDone ? 'bg-emerald-500 text-matte font-bold' : 'bg-stone-700 text-stone-300'}">${isDone ? 'আদা' : 'বাকি'}</span>
-                    </div>
-                `;
-            });
-            document.getElementById('home-prayer-grid').innerHTML = gridHTML;
-
-            // Amal & Salah Stats counts
-            const totalAmalsCount = predefinedAmals.length + appData.customAmals.length;
-            let completedAmalsCount = 0;
-            predefinedAmals.forEach(a => { if (appData.amals[today][a.id]) completedAmalsCount++; });
-            appData.customAmals.forEach(a => { if (appData.amals[today][a.id]) completedAmalsCount++; });
-
-            document.getElementById('home-amal-stat').innerText = `${completedAmalsCount}/${totalAmalsCount}`;
-            document.getElementById('home-salah-stat').innerText = `${completedSalahCount}/৫`;
-
-            // Progress Ring calculation
-            const totalItems = totalAmalsCount + 5;
-            const completedItems = completedAmalsCount + completedSalahCount;
-            const percentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-            
-            document.getElementById('home-progress-text').innerText = `${percentage}%`;
-            const circumference = 213.6;
-            const offset = circumference - (percentage / 100) * circumference;
-            document.getElementById('home-progress-ring').style.strokeDashoffset = offset;
-
-            // Weekly mini chart
-            renderHomeWeeklyChart();
-        }
-
-        function renderHomeWeeklyChart() {
-            let chartHTML = '';
-            for (let i = 6; i >= 0; i--) {
-                const d = new Date();
-                d.setDate(d.getDate() - i);
-                const dateStr = getFormattedDate(d);
-                const dayName = d.toLocaleDateString('bn-BD', { weekday: 'short' });
-                
-                // Calculate dummy or actual completion
-                const dayAmals = appData.amals[dateStr] || {};
-                const count = Object.values(dayAmals).filter(Boolean).length;
-                const heightPercent = Math.min(100, Math.max(15, count * 15));
-
-                chartHTML += `
-                    <div class="flex flex-col items-center gap-1">
-                        <div class="w-6 bg-darkbrown rounded-t-lg h-16 flex items-end justify-center overflow-hidden border border-borderbrown">
-                            <div class="w-full bg-gold rounded-t-sm transition-all" style="height: ${heightPercent}%"></div>
-                        </div>
-                        <span class="text-[10px] text-stone-400">${dayName}</span>
-                    </div>
-                `;
-            }
-            document.getElementById('home-weekly-chart').innerHTML = chartHTML;
-        }
-
-        function renderSalahList() {
-            const today = getFormattedDate();
-            if (!appData.salah[today]) appData.salah[today] = {};
-
-            const prayers = [
-                { key: 'Fajr', name: 'ফজর', rakats: '২ সুন্নাত, ২ ফরজ' },
-                { key: 'Dhuhr', name: 'যোহর', cat: 'দুপুর', rakats: '৪ সুন্নাত, ৪ ফরজ, ২ সুন্নাত, ২ নফল' },
-                { key: 'Asr', name: 'আসর', cat: 'বিকেল', rakats: '৪ সুন্নাত, ৪ ফরজ' },
-                { key: 'Maghrib', name: 'মাগরিব', cat: 'সন্ধ্যা', rakats: '৩ ফরজ, ২ সুন্নাত, ২ নফল' },
-                { key: 'Isha', name: 'ইশা', cat: 'রাত', rakats: '৪ সুন্নাত, ৪ ফরজ, ২ সুন্নাত, ২ নফল, ৩ বিতর' }
-            ];
-
-            let html = '';
-            prayers.forEach(p => {
-                const curr = appData.salah[today][p.key] || { status: 'none', jamaat: false };
-                const isDone = curr.status && curr.status !== 'none';
-
-                html += `
-                    <div class="bg-cardbrown p-4 rounded-2xl gold-border space-y-3">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold text-base text-gold">${p.name}</h3>
-                                <p class="text-xs text-stone-400">${p.rakats}</p>
-                            </div>
-                            <button onclick="toggleSalahStatus('${p.key}')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${isDone ? 'bg-emerald-500 text-matte' : 'bg-darkbrown text-stone-300 border border-borderbrown'}">
-                                <i class="fa-solid ${isDone ? 'fa-check' : 'fa-circle'} mr-1"></i> ${isDone ? 'সম্পন্ন' : 'বাকি'}
-                            </button>
-                        </div>
-                        <div class="flex gap-2 pt-2 border-t border-borderbrown text-xs">
-                            <button onclick="setSalahDetail('${p.key}', 'status', 'ontime')" class="flex-1 py-1 rounded-lg ${curr.status === 'ontime' ? 'bg-gold text-matte font-bold' : 'bg-darkbrown text-stone-300 border border-borderbrown'}">সময়মতো</button>
-                            <button onclick="setSalahDetail('${p.key}', 'status', 'jamaat')" class="flex-1 py-1 rounded-lg ${curr.status === 'jamaat' ? 'bg-gold text-matte font-bold' : 'bg-darkbrown text-stone-300 border border-borderbrown'}">জামাতে</button>
-                            <button onclick="setSalahDetail('${p.key}', 'status', 'qaza')" class="flex-1 py-1 rounded-lg ${curr.status === 'qaza' ? 'bg-amber-500 text-matte font-bold' : 'bg-darkbrown text-stone-300 border border-borderbrown'}">কাজা</button>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('salah-list-container').innerHTML = html;
-        }
-
-        function toggleSalahStatus(prayerKey) {
-            const today = getFormattedDate();
-            if (!appData.salah[today][prayerKey]) {
-                appData.salah[today][prayerKey] = { status: 'ontime', jamaat: true };
-            } else {
-                appData.salah[today][prayerKey].status = appData.salah[today][prayerKey].status === 'none' ? 'ontime' : 'none';
-            }
-            saveData();
-            renderSalahList();
-            renderHomeDashboard();
-        }
-
-        function setSalahDetail(prayerKey, field, val) {
-            const today = getFormattedDate();
-            if (!appData.salah[today][prayerKey]) appData.salah[today][prayerKey] = { status: 'none', jamaat: false };
-            appData.salah[today][prayerKey][field] = val;
-            saveData();
-            renderSalahList();
-            renderHomeDashboard();
-        }
-
-        function openQazaManager() {
-            showModal('কাজা খাতা ও হিসাব', `
-                <div class="space-y-3">
-                    <p class="text-xs text-stone-400">আপনার জীবনের বা অতীতের কাজা নামাজের হিসাব রাখুন:</p>
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center bg-darkbrown p-2.5 rounded-xl border border-borderbrown">
-                            <span>ফজর কাজা:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="updateQazaCount('Fajr', -1)" class="w-7 h-7 rounded bg-cardbrown font-bold text-gold">-</button>
-                                <span id="qaza-fajr-val" class="font-bold text-gold w-6 text-center">${appData.qaza.Fajr}</span>
-                                <button onclick="updateQazaCount('Fajr', 1)" class="w-7 h-7 rounded bg-cardbrown font-bold text-gold">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center bg-darkbrown p-2.5 rounded-xl border border-borderbrown">
-                            <span>যোহর কাজা:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="updateQazaCount('Dhuhr', -1)" class="w-7 h-7 rounded bg-cardbrown font-bold text-gold">-</button>
-                                <span id="qaza-dhuhr-val" class="font-bold text-gold w-6 text-center">${appData.qaza.Dhuhr}</span>
-                                <button onclick="updateQazaCount('Dhuhr', 1)" class="w-7 h-7 rounded bg-cardbrown font-bold text-gold">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `);
-        }
-
-        function updateQazaCount(prayer, delta) {
-            appData.qaza[prayer] = Math.max(0, appData.qaza[prayer] + delta);
-            saveData();
-            const el = document.getElementById(`qaza-${prayer.toLowerCase()}-val`);
-            if (el) el.innerText = appData.qaza[prayer];
-        }
-
-        let currentAmalFilter = 'all';
-
-        function filterAmals(cat) {
-            currentAmalFilter = cat;
-            document.querySelectorAll('.amal-filter-btn').forEach(btn => {
-                btn.className = 'px-3 py-1.5 rounded-xl bg-cardbrown text-stone-300 border border-borderbrown whitespace-nowrap amal-filter-btn';
-            });
-            event.target.className = 'px-3 py-1.5 rounded-xl bg-gold text-matte font-semibold whitespace-nowrap amal-filter-btn';
-            renderAmalList();
-        }
-
-        function renderAmalList() {
-            const today = getFormattedDate();
-            if (!appData.amals[today]) appData.amals[today] = {};
-
-            let html = '';
-            
-            // Render Predefined Amals
-            predefinedAmals.forEach(amal => {
-                if (currentAmalFilter !== 'all' && currentAmalFilter !== amal.category) return;
-                const isDone = !!appData.amals[today][amal.id];
-
-                html += `
-                    <div class="bg-cardbrown p-3.5 rounded-2xl gold-border flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <button onclick="toggleAmal('${amal.id}')" class="w-7 h-7 rounded-lg flex items-center justify-center transition ${isDone ? 'bg-emerald-500 text-matte' : 'bg-darkbrown border border-borderbrown text-transparent'}">
-                                <i class="fa-solid fa-check text-xs"></i>
-                            </button>
-                            <div>
-                                <h4 class="font-medium text-sm ${isDone ? 'line-through text-stone-400' : 'text-cream'}">${amal.name}</h4>
-                                <span class="text-[10px] text-stone-400 uppercase">ক্যাটেগরি: ${amal.category}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-
-            // Render Custom Amals
-            appData.customAmals.forEach(amal => {
-                if (currentAmalFilter !== 'all' && currentAmalFilter !== amal.category) return;
-                const isDone = !!appData.amals[today][amal.id];
-
-                html += `
-                    <div class="bg-cardbrown p-3.5 rounded-2xl gold-border flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <button onclick="toggleAmal('${amal.id}')" class="w-7 h-7 rounded-lg flex items-center justify-center transition ${isDone ? 'bg-emerald-500 text-matte' : 'bg-darkbrown border border-borderbrown text-transparent'}">
-                                <i class="fa-solid fa-check text-xs"></i>
-                            </button>
-                            <div>
-                                <h4 class="font-medium text-sm ${isDone ? 'line-through text-stone-400' : 'text-cream'}">${amal.name} <span class="text-[10px] text-gold">(কাস্টম)</span></h4>
-                                <span class="text-[10px] text-stone-400 uppercase">লক্ষ্য: ${amal.target} বার</span>
-                            </div>
-                        </div>
-                        <button onclick="deleteCustomAmal('${amal.id}')" class="text-rose-400 hover:text-rose-300 text-xs px-2 py-1"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-            });
-
-            document.getElementById('amal-list-container').innerHTML = html || '<p class="text-xs text-stone-400 text-center py-4">কোনো আমল পাওয়া যায়নি</p>';
-        }
-
-        function toggleAmal(amalId) {
-            const today = getFormattedDate();
-            if (!appData.amals[today]) appData.amals[today] = {};
-            appData.amals[today][amalId] = !appData.amals[today][amalId];
-            saveData();
-            renderAmalList();
-            renderHomeDashboard();
-        }
-
-        function openAddAmalModal() {
-            showModal('নতুন আমল যুক্ত করুন', `
-                <div class="space-y-3">
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">আমলের নাম</label>
-                        <input id="new-amal-name" type="text" placeholder="যেমন: ইশরাক নামাজ" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">ক্যাটেগরি</label>
-                        <select id="new-amal-cat" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                            <option value="daily">দৈনিক</option>
-                            <option value="quran">কুরআন ও জিকির</option>
-                            <option value="sunnah">সুন্নাহ</option>
-                        </select>
-                    </div>
-                    <button onclick="saveNewAmal()" class="w-full py-2.5 rounded-xl bg-gold text-matte font-bold text-sm mt-2">যুক্ত করুন</button>
-                </div>
-            `);
-        }
-
-        function saveNewAmal() {
-            const name = document.getElementById('new-amal-name').value.trim();
-            const cat = document.getElementById('new-amal-cat').value;
-            if (!name) return;
-
-            const newObj = { id: 'ca_' + Date.now(), name, category: cat, target: 1 };
-            appData.customAmals.push(newObj);
-            saveData();
-            closeModal();
-            renderAmalList();
-            renderHomeDashboard();
-        }
-
-        function deleteCustomAmal(id) {
-            appData.customAmals = appData.customAmals.filter(a => a.id !== id);
-            saveData();
-            renderAmalList();
-            renderHomeDashboard();
-        }
-
-        function renderZikirInterface() {
-            let selectHTML = '';
-            for (const [key, item] of Object.entries(zikirList)) {
-                selectHTML += `<option value="${key}" ${appData.activeZikirKey === key ? 'selected' : ''}>${item.name}</option>`;
-            }
-            document.getElementById('active-zikir-select').innerHTML = selectHTML;
-            updateActiveZikirUI();
-        }
-
-        function changeActiveZikir(key) {
-            appData.activeZikirKey = key;
-            saveData();
-            updateActiveZikirUI();
-        }
-
-        function updateActiveZikirUI() {
-            const item = zikirList[appData.activeZikirKey];
-            if (!item) return;
-
-            document.getElementById('zikir-arabic-text').innerText = item.arabic;
-            document.getElementById('zikir-meaning-text').innerText = item.meaning;
-            
-            const currentCount = appData.zikirCounts[appData.activeZikirKey] || 0;
-            document.getElementById('zikir-current-count').innerText = currentCount;
-            document.getElementById('zikir-target-count').innerText = item.target;
-
-            const percentage = Math.min(100, Math.round((currentCount / item.target) * 100));
-            document.getElementById('zikir-progress-bar').style.width = `${percentage}%`;
-        }
-
-        function incrementZikir() {
-            const key = appData.activeZikirKey;
-            if (!appData.zikirCounts[key]) appData.zikirCounts[key] = 0;
-            appData.zikirCounts[key]++;
-            saveData();
-            updateActiveZikirUI();
-        }
-
-        function resetActiveZikir() {
-            const key = appData.activeZikirKey;
-            appData.zikirCounts[key] = 0;
-            saveData();
-            updateActiveZikirUI();
-        }
-
-        function openAddZikirModal() {
-            showModal('নতুন জিকির যুক্ত করুন', `
-                <div class="space-y-3">
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">জিকিরের নাম</label>
-                        <input id="nz-name" type="text" placeholder="যেমন: সুবহানাল্লাহি ওয়া বিহামদিহি" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">আরবি পাঠ</label>
-                        <input id="nz-arabic" type="text" placeholder="سُبْحَانَ اللَّهِ وَبِحَمْدِهِ" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">লক্ষ্য সংখ্যা</label>
-                        <input id="nz-target" type="number" value="100" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    </div>
-                    <button onclick="saveNewZikir()" class="w-full py-2.5 rounded-xl bg-gold text-matte font-bold text-sm mt-2">সংরক্ষণ করুন</button>
-                </div>
-            `);
-        }
-
-        function saveNewZikir() {
-            const name = document.getElementById('nz-name').value.trim();
-            const arabic = document.getElementById('nz-arabic').value.trim();
-            const target = parseInt(document.getElementById('nz-target').value) || 100;
-            if (!name) return;
-
-            const key = 'zikir_' + Date.now();
-            zikirList[key] = { name, arabic, meaning: 'কাস্টম জিকির', target };
-            appData.zikirCounts[key] = 0;
-            appData.activeZikirKey = key;
-            saveData();
-            closeModal();
-            renderZikirInterface();
-        }
-
-        function renderQuranSection() {
-            document.getElementById('quran-last-read').innerText = appData.quran.lastRead;
-            document.getElementById('quran-today-pages').innerText = `${appData.quran.todayPages} পৃষ্ঠা`;
-
-            const surahs = [
-                { name: 'সূরা আল-মুলক (প্রতিরাত)', key: 'Al-Mulk' },
-                { name: 'সূরা আল-কাহাফ (শুক্রবার)', key: 'Al-Kahf' },
-                { name: 'সূরা ইয়াসীন (সকাল)', key: 'Yasin' }
-            ];
-
-            let html = '';
-            surahs.forEach(s => {
-                const isDone = !!appData.quran.surahs[s.key];
-                html += `
-                    <div class="flex justify-between items-center bg-darkbrown p-3 rounded-xl border border-borderbrown">
-                        <span class="text-sm font-medium">${s.name}</span>
-                        <button onclick="toggleSurah('${s.key}')" class="px-3 py-1 rounded-lg text-xs font-bold ${isDone ? 'bg-emerald-500 text-matte' : 'bg-cardbrown text-stone-300 border border-borderbrown'}">
-                            ${isDone ? 'সম্পন্ন' : 'বাকি'}
-                        </button>
-                    </div>
-                `;
-            });
-            document.getElementById('quran-surah-list').innerHTML = html;
-        }
-
-        function toggleSurah(key) {
-            appData.quran.surahs[key] = !appData.quran.surahs[key];
-            saveData();
-            renderQuranSection();
-        }
-
-        function addQuranPages(count) {
-            appData.quran.todayPages += count;
-            saveData();
-            renderQuranSection();
-        }
-
-        function updateQuranBookmarkPrompt() {
-            showModal('বুকমার্ক আপডেট', `
-                <div class="space-y-3">
-                    <input id="q-bookmark-input" type="text" value="${appData.quran.lastRead}" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    <button onclick="saveQuranBookmark()" class="w-full py-2.5 rounded-xl bg-gold text-matte font-bold text-sm">সেভ করুন</button>
-                </div>
-            `);
-        }
-
-        function saveQuranBookmark() {
-            const val = document.getElementById('q-bookmark-input').value.trim();
-            if (val) {
-                appData.quran.lastRead = val;
-                saveData();
-                closeModal();
-                renderQuranSection();
-            }
-        }
-
-        let currentDuaFilter = 'all';
-
-        function filterDuas(cat) {
-            currentDuaFilter = cat;
-            renderDuasSection();
-        }
-
-        function renderDuasSection() {
-            let html = '';
-            duasData.forEach(dua => {
-                if (currentDuaFilter === 'favorites') {
-                    if (!appData.duas.favorites.includes(dua.id)) return;
-                } else if (currentDuaFilter !== 'all' && dua.cat !== currentDuaFilter) {
-                    return;
-                }
-
-                const isFav = appData.duas.favorites.includes(dua.id);
-
-                html += `
-                    <div class="bg-cardbrown p-4 rounded-2xl gold-border space-y-2">
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-bold text-sm text-gold">${dua.title}</h3>
-                            <button onclick="toggleDuaFavorite('${dua.id}')" class="text-xs ${isFav ? 'text-rose-500' : 'text-stone-400'}">
-                                <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart text-base"></i>
-                            </button>
-                        </div>
-                        <p class="text-right text-lg font-serif text-gold-light py-1">${dua.arabic}</p>
-                        <p class="text-xs text-stone-300 italic">উচ্চারণ: ${dua.transliteration}</p>
-                        <p class="text-xs text-stone-300 pt-1 border-t border-borderbrown">অর্থ: ${dua.meaning}</p>
-                    </div>
-                `;
-            });
-            document.getElementById('duas-list-container').innerHTML = html || '<p class="text-xs text-stone-400 text-center py-4">কোনো দোয়া পাওয়া যায়নি</p>';
-        }
-
-        function toggleDuaFavorite(id) {
-            const idx = appData.duas.favorites.indexOf(id);
-            if (idx >= 0) {
-                appData.duas.favorites.splice(idx, 1);
-            } else {
-                appData.duas.favorites.push(id);
-            }
-            saveData();
-            renderDuasSection();
-        }
-
-        function renderStatsSection() {
-            document.getElementById('stats-current-streak').innerText = `${appData.streak} দিন`;
-            document.getElementById('stats-max-streak').innerText = `${appData.maxStreak} দিন`;
-
-            let chartHTML = '';
-            for (let i = 4; i >= 0; i--) {
-                const d = new Date();
-                d.setDate(d.getDate() - i);
-                const dateStr = getFormattedDate(d);
-                const daySalah = appData.salah[dateStr] || {};
-                let completedCount = 0;
-                ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].forEach(p => {
-                    if (daySalah[p]?.status && daySalah[p]?.status !== 'missed') completedCount++;
-                });
-
-                chartHTML += `
-                    <div class="flex items-center justify-between bg-darkbrown p-2.5 rounded-xl border border-borderbrown text-xs">
-                        <span>${d.toLocaleDateString('bn-BD', { month: 'short', day: 'numeric' })}</span>
-                        <div class="flex gap-1">
-                            <span class="font-bold text-gold">${completedCount}/৫ ওয়াক্ত</span>
-                        </div>
-                    </div>
-                `;
-            }
-            document.getElementById('stats-salah-chart').innerHTML = chartHTML;
-        }
-
-        function renderRoutineSection() {
-            let html = '';
-            appData.routine.forEach((item, index) => {
-                html += `
-                    <div class="bg-cardbrown p-3.5 rounded-2xl gold-border flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <button onclick="toggleRoutine(${index})" class="w-7 h-7 rounded-lg flex items-center justify-center transition ${item.completed ? 'bg-emerald-500 text-matte' : 'bg-darkbrown border border-borderbrown text-transparent'}">
-                                <i class="fa-solid fa-check text-xs"></i>
-                            </button>
-                            <div>
-                                <h4 class="font-medium text-sm ${item.completed ? 'line-through text-stone-400' : 'text-cream'}">${item.task}</h4>
-                                <span class="text-[10px] text-gold">${item.time}</span>
-                            </div>
-                        </div>
-                        <button onclick="deleteRoutine(${index})" class="text-rose-400 text-xs"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-            });
-            document.getElementById('routine-list-container').innerHTML = html || '<p class="text-xs text-stone-400 text-center py-4">কোনো রুটিন নেই</p>';
-        }
-
-        function toggleRoutine(index) {
-            appData.routine[index].completed = !appData.routine[index].completed;
-            saveData();
-            renderRoutineSection();
-        }
-
-        function deleteRoutine(index) {
-            appData.routine.splice(index, 1);
-            saveData();
-            renderRoutineSection();
-        }
-
-        function openAddRoutineModal() {
-            showModal('নতুন রুটিন যুক্ত করুন', `
-                <div class="space-y-3">
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">সময়কাল</label>
-                        <input id="r-time" type="text" placeholder="যেমন: মাগরিবের পর" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="text-xs text-stone-400 block mb-1">কাজের বিবরণ</label>
-                        <input id="r-task" type="text" placeholder="যেমন: তাসবিহ পাঠ ও দোয়া" class="w-full bg-darkbrown text-cream p-2.5 rounded-xl border border-borderbrown text-sm outline-none">
-                    </div>
-                    <button onclick="saveNewRoutine()" class="w-full py-2.5 rounded-xl bg-gold text-matte font-bold text-sm mt-2">যুক্ত করুন</button>
-                </div>
-            `);
-        }
-
-        function saveNewRoutine() {
-            const time = document.getElementById('r-time').value.trim();
-            const task = document.getElementById('r-task').value.trim();
-            if (!time || !task) return;
-
-            appData.routine.push({ id: 'r_' + Date.now(), time, task, completed: false });
-            saveData();
-            closeModal();
-            renderRoutineSection();
-        }
-
-        function changeCity(city) {
-            appData.city = city;
-            saveData();
-            renderHeaderDate();
-        }
-
-        function openCitySelector() {
-            switchTab('settings');
-        }
-
-        function openStreakModal() {
-            showModal('ধারাবাহিকতা (Streak)', `
-                <div class="text-center space-y-3 py-2">
-                    <i class="fa-solid fa-fire text-amber-500 text-4xl"></i>
-                    <h4 class="text-xl font-bold text-gold">${appData.streak} দিনের স্ট্রিক!</h4>
-                    <p class="text-xs text-stone-300">প্রতিদিন অ্যাপ ওপেন করে আপনার আমল ও নামাজ ট্র্যাক করলে স্ট্রিক বৃদ্ধি পাবে। সর্বোচ্চ ধারাবাহিকতা: ${appData.maxStreak} দিন।</p>
-                </div>
-            `);
-        }
-
-        function exportJSONData() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `noorul_amal_backup_${getFormattedDate()}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-        }
-
-        function importJSONData(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const parsed = JSON.parse(e.target.result);
-                    if (parsed && parsed.streak !== undefined) {
-                        appData = parsed;
-                        saveData();
-                        location.reload();
-                    } else {
-                        showModal('ত্রুটি', '<p class="text-rose-400 text-xs">সঠিক ব্যাকআপ ফাইল নয়।</p>');
-                    }
-                } catch (err) {
-                    showModal('ত্রুটি', '<p class="text-rose-400 text-xs">ফাইল পার্স করতে সমস্যা হয়েছে।</p>');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function confirmResetData() {
-            showModal('সতর্কতা', `
-                <div class="space-y-3">
-                    <p class="text-xs text-rose-400">আপনি কি সমস্ত ডেটা রিসেট করতে চান? আপনার সমস্ত সংরক্ষিত আমল ও হিসাব মুছে যাবে।</p>
-                    <button onclick="executeResetData()" class="w-full py-2.5 rounded-xl bg-rose-500 text-white font-bold text-sm">হ্যাঁ, সব মুছে ফেলুন</button>
-                </div>
-            `);
-        }
-
-        function executeResetData() {
-            localStorage.removeItem(APP_STORAGE_KEY);
-            location.reload();
-        }
-
-        function showModal(title, contentHTML) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-content').innerHTML = contentHTML;
-            document.getElementById('custom-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('custom-modal').classList.add('hidden');
-        }
-    </script>
+      };
+      reader.readAsText(event.target.files[0]);
+    }
+
+    function confirmClearData() {
+      if (confirm('আপনি কি নিশ্চিত যে আপনার সমস্ত সেভ করা ডেটা মুছে ফেলতে চান?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    /* ==========================================================================
+       CALENDAR DRAWER LOGIC
+       ========================================================================== */
+    function toggleQuickCalendar() {
+      const drawer = document.getElementById('calendarDrawer');
+      drawer.classList.toggle('hidden');
+      if (!drawer.classList.contains('hidden')) {
+        renderCalendarGrid();
+      }
+    }
+
+    function renderCalendarGrid() {
+      const grid = document.getElementById('calendarGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      for (let i = 1; i <= 30; i++) {
+        const div = document.createElement('div');
+        div.className = 'py-1.5 rounded bg-brand-input border border-brand-border text-[11px] hover:border-brand-gold cursor-pointer';
+        div.innerText = i;
+        grid.appendChild(div);
+      }
+    }
+
+    /* ==========================================================================
+       INITIALIZATION
+       ========================================================================== */
+    window.onload = function() {
+      loadState();
+      selectDhikrItem();
+      updateDashboardUI();
+    };
+  </script>
 </body>
 </html>
+```
